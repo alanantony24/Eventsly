@@ -19,6 +19,8 @@
 		0EA92B5D2796940D002D9CED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA92B5C2796940D002D9CED /* LoginViewController.swift */; };
 		0EA92B5F27969446002D9CED /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA92B5E27969446002D9CED /* SignUpViewController.swift */; };
 		CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */; };
+		CEA4A4A627995A5200B9C224 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A527995A5200B9C224 /* Event.swift */; };
+		CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A927995E2E00B9C224 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		0EA92B5C2796940D002D9CED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0EA92B5E27969446002D9CED /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		CEA4A4A527995A5200B9C224 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		CEA4A4A927995E2E00B9C224 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 				0EA92B5A279693E8002D9CED /* HomeViewController.swift */,
 				0EA92B5C2796940D002D9CED /* LoginViewController.swift */,
 				0EA92B5E27969446002D9CED /* SignUpViewController.swift */,
+				CEA4A4A527995A5200B9C224 /* Event.swift */,
+				CEA4A4A927995E2E00B9C224 /* User.swift */,
 			);
 			path = Eventsly;
 			sourceTree = "<group>";
@@ -158,12 +164,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EA92B5D2796940D002D9CED /* LoginViewController.swift in Sources */,
+				CEA4A4A627995A5200B9C224 /* Event.swift in Sources */,
 				0EA92B5F27969446002D9CED /* SignUpViewController.swift in Sources */,
 				0EA92B5B279693E8002D9CED /* HomeViewController.swift in Sources */,
 				0E02AEC92792EE7700764DA6 /* ViewController.swift in Sources */,
 				0E02AEC52792EE7700764DA6 /* AppDelegate.swift in Sources */,
 				0E02AEC72792EE7700764DA6 /* SceneDelegate.swift in Sources */,
 				CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */,
+				CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */,
 				0E02AECF2792EE7700764DA6 /* Eventsly.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
