@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UHg-cJ-VuT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UHg-cJ-VuT">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -83,7 +83,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ynl-nv-jZZ">
-                                <rect key="frame" x="40" y="84" width="334" height="350.5"/>
+                                <rect key="frame" x="40" y="164" width="334" height="350.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ya4-C6-OVr">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
@@ -132,13 +132,22 @@
                                     <constraint firstItem="IeH-T5-zcg" firstAttribute="width" secondItem="Ya4-C6-OVr" secondAttribute="width" id="qcs-Sc-vtU"/>
                                 </constraints>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Gj-4I-YZz">
+                                <rect key="frame" x="30" y="54" width="354" height="96"/>
+                                <items>
+                                    <navigationItem title="Sign Up" id="BTt-Rg-pBn"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OKB-y6-9Ur"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Ynl-nv-jZZ" firstAttribute="top" secondItem="OKB-y6-9Ur" secondAttribute="top" constant="40" id="GT8-A6-koI"/>
+                            <constraint firstItem="OKB-y6-9Ur" firstAttribute="trailing" secondItem="5Gj-4I-YZz" secondAttribute="trailing" constant="30" id="6a7-cY-ZVY"/>
                             <constraint firstItem="OKB-y6-9Ur" firstAttribute="trailing" secondItem="Ynl-nv-jZZ" secondAttribute="trailing" constant="40" id="LQ5-S6-jHl"/>
+                            <constraint firstItem="Ynl-nv-jZZ" firstAttribute="top" secondItem="OKB-y6-9Ur" secondAttribute="top" constant="120" id="Na3-S8-YMV"/>
                             <constraint firstItem="Ynl-nv-jZZ" firstAttribute="leading" secondItem="OKB-y6-9Ur" secondAttribute="leading" constant="40" id="PA5-YG-Syp"/>
+                            <constraint firstItem="5Gj-4I-YZz" firstAttribute="leading" secondItem="OKB-y6-9Ur" secondAttribute="leading" constant="30" id="f4x-Zs-7KH"/>
+                            <constraint firstItem="5Gj-4I-YZz" firstAttribute="top" secondItem="OKB-y6-9Ur" secondAttribute="top" constant="10" id="puz-sm-qis"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gf6-SE-rjC"/>
@@ -156,7 +165,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oDX-eE-gcc">
-                                <rect key="frame" x="40" y="84" width="334" height="200.5"/>
+                                <rect key="frame" x="40" y="164" width="334" height="200.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Zb-ec-S7H">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
@@ -191,13 +200,22 @@
                                     <constraint firstItem="gIY-Aa-4PF" firstAttribute="height" secondItem="9Zb-ec-S7H" secondAttribute="height" id="tYb-h2-glA"/>
                                 </constraints>
                             </stackView>
+                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X2H-GN-RFE">
+                                <rect key="frame" x="30" y="54" width="354" height="96"/>
+                                <items>
+                                    <navigationItem title="Log In" id="mpd-sA-YeD"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BYr-RD-H9T"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oDX-eE-gcc" firstAttribute="top" secondItem="BYr-RD-H9T" secondAttribute="top" constant="40" id="T0Y-f2-687"/>
+                            <constraint firstItem="X2H-GN-RFE" firstAttribute="top" secondItem="BYr-RD-H9T" secondAttribute="top" constant="10" id="ahl-qp-gWa"/>
+                            <constraint firstItem="oDX-eE-gcc" firstAttribute="top" secondItem="BYr-RD-H9T" secondAttribute="top" constant="120" id="dGN-6e-2eL"/>
+                            <constraint firstItem="X2H-GN-RFE" firstAttribute="leading" secondItem="BYr-RD-H9T" secondAttribute="leading" constant="30" id="ea3-tz-rVw"/>
                             <constraint firstItem="oDX-eE-gcc" firstAttribute="leading" secondItem="BYr-RD-H9T" secondAttribute="leading" constant="40" id="pAO-Md-HBH"/>
                             <constraint firstItem="BYr-RD-H9T" firstAttribute="trailing" secondItem="oDX-eE-gcc" secondAttribute="trailing" constant="40" id="scy-jQ-L8t"/>
+                            <constraint firstAttribute="trailing" secondItem="X2H-GN-RFE" secondAttribute="trailing" constant="30" id="tiE-kj-2Ar"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JY7-vC-5oR"/>
