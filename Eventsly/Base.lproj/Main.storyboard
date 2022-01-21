@@ -203,7 +203,7 @@
                             <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X2H-GN-RFE">
                                 <rect key="frame" x="30" y="54" width="354" height="96"/>
                                 <items>
-                                    <navigationItem title="Log In" id="mpd-sA-YeD"/>
+                                    <navigationItem title="Login" id="mpd-sA-YeD"/>
                                 </items>
                             </navigationBar>
                         </subviews>
