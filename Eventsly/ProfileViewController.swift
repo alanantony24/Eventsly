@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     @IBAction func logOutBtn(_ sender: Any) {
         do{
@@ -28,5 +29,6 @@ class ProfileViewController: UIViewController {
             print("An error occured")
         }
     }
+    
     
 }
