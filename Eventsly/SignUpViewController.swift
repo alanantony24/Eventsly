@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
+import Firebase
+import FirebaseFirestore
 
 class SignUpViewController:UIViewController{
     
@@ -22,55 +25,100 @@ class SignUpViewController:UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetupElements()
     }
     
-    func CheckUserExist(email:String, userName:String, phNo:Int32?) -> Bool{
+    func SetupElements(){
+        errorMsgLabel.alpha = 0
+    }
+    
+    //Check the fields and validate the data is correct. If not correct data, then prompt error message
+    func ValidateFields() -> String?{
         
-        let userList:[User] = signUpController.RetrieveAllUsersFromCoreData()
-        if userList.isEmpty{
-            return false
+        //Check all fileds are filled
+        if nameFld.text?.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) == "" ||
+            userNameFld.text?.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) == "" ||
+            emailFld.text?.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) == "" ||
+            pwdFld.text?.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) == "" ||
+            cfmPwdFld.text?.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) == "" ||
+            phoneNo.text?.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines) == "" {
+            
+            return  "Please fill in all fields"
         }
-        for user in userList{
-            if email==user.email || userName==user.username || phNo==user.phone{
-                return true
-            }
-            else{
-                return false
-            }
+        
+        let cleanedPassword = pwdFld.text!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        let cleanedCfmPassword = cfmPwdFld.text!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+        
+        //Check if password is strong (REGEX)
+        if Utilities.isPasswordValid(cleanedPassword) == false || Utilities.isPasswordValid(cleanedCfmPassword) == false{
+            return "Please make sure your password is at least 8 characters, contains a special character and a number."
         }
-        return true
+        
+        //Check if both passwords are correct
+        if cleanedPassword != cleanedCfmPassword{
+            return "Please make sure that both passwords are the same"
+        }
+        
+        return nil
     }
     
     @IBAction func signUpBtn(_ sender: Any) {
         
-        let appDelegate = (UIApplication.shared.delegate) as! AppDelegate
-
-        let context = appDelegate.persistentContainer.viewContext
+        //Validating the text fields
+        let error = ValidateFields()
         
-        let name = nameFld.text!
-        let username = userNameFld.text!
-        let email = emailFld.text
-        let pwd = pwdFld.text!
-        let cfmPwd = cfmPwdFld.text!
-        let phNo:Int32? = Int32(phoneNo.text!)
-        
-        var user:User = User(name: name, username: username, password: pwd, email: email!, phone: phNo!)
-        
-        if pwd == cfmPwd{
-            if CheckUserExist(email: user.email, userName: user.username, phNo: user.phone) == false{
-                signUpController.AddUserToCoreData(newUser: user)
-                let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "Content") as UIViewController
-                vc.modalPresentationStyle = .fullScreen
-                present(vc, animated: true, completion: nil)
-            }
-            else{
-                errorMsgLabel.text = "The user already exists in the database. Consider logging in : )"
-            }
+        if error != nil{
+            //Error caught, prompt message
+            ShowError(error!)
         }
         else{
-            errorMsgLabel.text = "The passwords must match! Please enter the correct passwords"
+            //Create the final cleansed data
+            let name = nameFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let userName = userNameFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = pwdFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let cfmPwd = cfmPwdFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let phNo = phoneNo.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            //Create the users
+            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                
+                //Error Checking
+                if err != nil{
+                    self.ShowError("Error creating user")
+                }
+                else{
+                    let db = Firestore.firestore()
+                    db.collection("users").addDocument(data: ["name":name, "username":userName, "phNo":phNo, "uid": result!.user.uid]) { (error) in
+                        if error != nil{
+                            self.ShowError("User could not be created : (")
+                        }
+                    }
+                    //Go to the Home.storyboard
+                    self.TransitionToHome()
+                }
+            }
         }
     }
     
+    @IBAction func backBtn(_ sender: Any) {
+        if true{
+            let storyboard = UIStoryboard(name: Constants.Storyboard.firstStoryBoard, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginAndSignUp) as UIViewController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
+    }
+    func ShowError(_ message:String){
+        errorMsgLabel.text = message
+        errorMsgLabel.alpha = 1
+    }
+    
+    func TransitionToHome(){
+        if true{
+            let storyboard = UIStoryboard(name: Constants.Storyboard.homeStoryBoard, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as UIViewController
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: true, completion: nil)
+        }
+    }
 }

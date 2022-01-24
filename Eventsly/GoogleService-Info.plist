@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>127167312511-706tnvsudcatt3k0gjvnckvs7s2t2c9m.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.127167312511-706tnvsudcatt3k0gjvnckvs7s2t2c9m</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAuMpXGHMdfZJ8rRAwj_hRenaroHx-hJBw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>127167312511</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>alan.antony.Eventsly</string>
+	<key>PROJECT_ID</key>
+	<string>mad2-db360</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mad2-db360.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:127167312511:ios:1703b85b4bac33934e854a</string>
+	<key>DATABASE_URL</key>
+	<string>https://mad2-db360-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+</dict>
+</plist>
