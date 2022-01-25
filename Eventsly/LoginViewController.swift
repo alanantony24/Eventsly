@@ -32,7 +32,7 @@ class LoginViewController:UIViewController{
         let email = emailFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = pwdFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        //Cleaned data
+        //Cleaned data lol
         Auth.auth().signIn(withEmail: email, password: password) { (result,error) in
             if error != nil{
                 self.errorMessageLabel.text = error!.localizedDescription
