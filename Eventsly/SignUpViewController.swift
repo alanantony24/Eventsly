@@ -101,12 +101,7 @@ class SignUpViewController:UIViewController{
     }
     
     @IBAction func backBtn(_ sender: Any) {
-        if true{
-            let storyboard = UIStoryboard(name: Constants.Storyboard.firstStoryBoard, bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginAndSignUp) as UIViewController
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: true, completion: nil)
-        }
+        _ = navigationController?.popToRootViewController(animated: true)
     }
     func ShowError(_ message:String){
         errorMsgLabel.text = message
