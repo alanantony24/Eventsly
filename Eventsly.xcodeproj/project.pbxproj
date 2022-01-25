@@ -22,11 +22,11 @@
 		0EE385E6279D05F100AEEC1D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0EE385E5279D05F100AEEC1D /* GoogleService-Info.plist */; };
 		0EE385E8279D1F0D00AEEC1D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE385E7279D1F0D00AEEC1D /* Constants.swift */; };
 		0EE59407279A6A9600A7AA3C /* SignUpAndLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE59406279A6A9600A7AA3C /* SignUpAndLoginController.swift */; };
+		AD75F051279FDBA6009ACBE0 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD75F050279FDBA6009ACBE0 /* HostViewController.swift */; };
 		C6B62013E8B3E54F30E9203B /* Pods_Eventsly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955E37B24707DB4A6D1490C /* Pods_Eventsly.framework */; };
 		CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */; };
 		CEA4A4A627995A5200B9C224 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A527995A5200B9C224 /* Event.swift */; };
 		CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A927995E2E00B9C224 /* User.swift */; };
-		CEA4A4AE279E268100B9C224 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA4A4AD279E268100B9C224 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,10 +50,10 @@
 		1903602D60284C83D1A49D65 /* Pods-Eventsly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventsly.release.xcconfig"; path = "Target Support Files/Pods-Eventsly/Pods-Eventsly.release.xcconfig"; sourceTree = "<group>"; };
 		4955E37B24707DB4A6D1490C /* Pods_Eventsly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventsly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		999D1B241532ABE62AC45CA7 /* Pods-Eventsly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventsly.debug.xcconfig"; path = "Target Support Files/Pods-Eventsly/Pods-Eventsly.debug.xcconfig"; sourceTree = "<group>"; };
+		AD75F050279FDBA6009ACBE0 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CEA4A4A527995A5200B9C224 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CEA4A4A927995E2E00B9C224 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		CEA4A4AD279E268100B9C224 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +108,7 @@
 				0EE59406279A6A9600A7AA3C /* SignUpAndLoginController.swift */,
 				0EE385E3279D020F00AEEC1D /* Utilities.swift */,
 				0EE385E7279D1F0D00AEEC1D /* Constants.swift */,
+				AD75F050279FDBA6009ACBE0 /* HostViewController.swift */,
 			);
 			path = Eventsly;
 			sourceTree = "<group>";
@@ -127,16 +128,6 @@
 				4955E37B24707DB4A6D1490C /* Pods_Eventsly.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EE349A9AE03A58A1F0A674A5 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4DA9D67138319F968DA1326B /* Pods-Eventsly.debug.xcconfig */,
-				2818C44FE506319CD136EB29 /* Pods-Eventsly.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +249,7 @@
 			files = (
 				0EA92B5D2796940D002D9CED /* LoginViewController.swift in Sources */,
 				CEA4A4A627995A5200B9C224 /* Event.swift in Sources */,
+				AD75F051279FDBA6009ACBE0 /* HostViewController.swift in Sources */,
 				0EA92B5F27969446002D9CED /* SignUpViewController.swift in Sources */,
 				0EA92B5B279693E8002D9CED /* HomeViewController.swift in Sources */,
 				0E02AEC92792EE7700764DA6 /* ViewController.swift in Sources */,

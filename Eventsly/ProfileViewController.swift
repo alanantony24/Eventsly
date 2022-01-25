@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
     @IBAction func logOutBtn(_ sender: Any) {
         do{
             try FirebaseAuth.Auth.auth().signOut()
@@ -29,6 +30,4 @@ class ProfileViewController: UIViewController {
             print("An error occured")
         }
     }
-    
-    
 }
