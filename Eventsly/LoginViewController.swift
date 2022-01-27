@@ -50,6 +50,7 @@ class LoginViewController:UIViewController{
     }
     
     @IBAction func backBtn(_ sender: Any) {
+        //takes back to rootviewcontroller
         _ = navigationController?.popToRootViewController(animated: true)
     }
 }
