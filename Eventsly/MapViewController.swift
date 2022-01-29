@@ -84,6 +84,7 @@ class MapViewController:UIViewController, MKMapViewDelegate{
         
         let geoCoder = CLGeocoder()
         
+        var annotationList:[MKAnnotation] = []
         for (key, value) in locEventDict{
             geoCoder.geocodeAddressString(value) { p, e in
                 let lat = String(
@@ -92,10 +93,14 @@ class MapViewController:UIViewController, MKMapViewDelegate{
                     format: "Lat (Address): %3.12f", p![0].location!.coordinate.latitude)
                 print("\(lat), \(long)")
                 let locationPin:CLLocation = CLLocation(latitude:p![0].location!.coordinate.latitude, longitude: p![0].location!.coordinate.longitude)
+                
+               
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = locationPin.coordinate
                 annotation.title = key
-                self.map.addAnnotation(annotation)
+                annotationList.append(annotation)
+                print(annotationList.count)
+                self.map.addAnnotations(annotationList)
             }
         }
     }
