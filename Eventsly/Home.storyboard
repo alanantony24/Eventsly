@@ -254,7 +254,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Events near you"/>
                                 <connections>
-                                    <segue destination="MHG-vF-jp5" kind="show" id="Nij-u9-H0w"/>
+                                    <segue destination="ZnY-cg-Gn0" kind="show" id="DUX-BR-ywk"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for events" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XPm-nl-2PK">
@@ -286,7 +286,7 @@
             </objects>
             <point key="canvasLocation" x="2741" y="-638"/>
         </scene>
-        <!--Map View Controller-->
+        <!--Events near you-->
         <scene sceneID="5Qa-h0-G3s">
             <objects>
                 <viewController id="ZnY-cg-Gn0" customClass="MapViewController" customModule="Eventsly" customModuleProvider="target" sceneMemberID="viewController">
@@ -297,26 +297,17 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="iEC-Ye-zKr">
                                 <rect key="frame" x="20" y="160" width="374" height="633"/>
                             </mapView>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T77-tZ-2N3">
-                                <rect key="frame" x="20" y="34" width="374" height="96"/>
-                                <items>
-                                    <navigationItem title="Events near you!" id="tMF-zV-AZw"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jTR-Nz-0Ef"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="T77-tZ-2N3" firstAttribute="top" secondItem="jTR-Nz-0Ef" secondAttribute="top" constant="-10" id="5Zy-XA-XTh"/>
-                            <constraint firstItem="jTR-Nz-0Ef" firstAttribute="trailing" secondItem="T77-tZ-2N3" secondAttribute="trailing" constant="20" id="eeX-28-hk3"/>
+                            <constraint firstItem="iEC-Ye-zKr" firstAttribute="top" secondItem="jTR-Nz-0Ef" secondAttribute="top" constant="20" id="cPz-DD-ayt"/>
                             <constraint firstItem="iEC-Ye-zKr" firstAttribute="leading" secondItem="jTR-Nz-0Ef" secondAttribute="leading" constant="20" id="esw-0C-n3G"/>
                             <constraint firstItem="jTR-Nz-0Ef" firstAttribute="bottom" secondItem="iEC-Ye-zKr" secondAttribute="bottom" constant="20" id="hWz-eB-MAm"/>
-                            <constraint firstItem="iEC-Ye-zKr" firstAttribute="top" secondItem="T77-tZ-2N3" secondAttribute="bottom" constant="30" id="mjZ-5O-BPu"/>
                             <constraint firstItem="jTR-Nz-0Ef" firstAttribute="trailing" secondItem="iEC-Ye-zKr" secondAttribute="trailing" constant="20" id="sn5-93-iDO"/>
-                            <constraint firstItem="T77-tZ-2N3" firstAttribute="leading" secondItem="jTR-Nz-0Ef" secondAttribute="leading" constant="20" id="xib-Me-clG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="B1L-Nc-ziw"/>
+                    <navigationItem key="navigationItem" title="Events near you" id="B1L-Nc-ziw"/>
                     <connections>
                         <outlet property="map" destination="iEC-Ye-zKr" id="Zty-yn-nja"/>
                     </connections>
@@ -575,24 +566,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wH-cc-Ae4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3658" y="68"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="g95-aJ-npH">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ATJ-Tq-Saj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="MHG-vF-jp5" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="BFr-fx-qse"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hNl-Ca-rGb">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="ZnY-cg-Gn0" kind="relationship" relationship="rootViewController" id="85m-La-2bg"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="3805.7971014492755" y="-638.16964285714278"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

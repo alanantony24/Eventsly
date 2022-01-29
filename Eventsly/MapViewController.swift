@@ -8,10 +8,13 @@
 import Foundation
 import UIKit
 import MapKit
+import FirebaseDatabase
 
-class MapViewController:UIViewController{
+class MapViewController:UIViewController, MKMapViewDelegate{
     
     @IBOutlet weak var map: MKMapView!
+    
+    private let database = Database.database().reference()
     
     let regionRadius:CLLocationDistance = 1000
     
@@ -53,6 +56,33 @@ class MapViewController:UIViewController{
             self.map.addAnnotation(self.annotation)
             self.map.showsUserLocation = true
         }
+        
+        database.child("Event").observeSingleEvent(of: .value, with: { snapshot in
+            guard let value = snapshot.value as? [String:Any] else {
+                return
+            }
+            print("Value : \(value["address"]!)")
+            
+            let geoCoder = CLGeocoder()
+            
+            geoCoder.geocodeAddressString(value["address"]! as! String) { p, e in
+                let lat = String(
+                    format: "Lat: %3.12f", p![0].location!.coordinate.latitude)
+                
+                let long = String(
+                    format: "Lat: %3.12f", p![0].location!.coordinate.latitude)
+                
+                print("\(lat), \(long)")
+                
+                var locationPin:CLLocation = CLLocation(latitude:p![0].location!.coordinate.latitude, longitude: p![0].location!.coordinate.longitude)
+                let annotation = MKPointAnnotation()
+                
+                annotation.coordinate = locationPin.coordinate
+                annotation.title = "Ngee Ann Polytechnic"
+                annotation.subtitle = "School of ICT"
+                self.map.addAnnotation(annotation)
+            }
+        })
     }
     
 }

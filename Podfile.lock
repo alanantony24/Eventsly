@@ -354,6 +354,9 @@ PODS:
     - FirebaseAnalytics (~> 8.11.0)
   - Firebase/CoreOnly (8.11.0):
     - FirebaseCore (= 8.11.0)
+  - Firebase/Database (8.11.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 8.11.0)
   - Firebase/Firestore (8.11.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 8.11.0)
@@ -389,6 +392,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - GoogleUtilities/Logger (~> 7.7)
     - nanopb (~> 2.30908.0)
+  - FirebaseDatabase (8.11.0):
+    - FirebaseCore (~> 8.0)
+    - leveldb-library (~> 1.22)
   - FirebaseFirestore (8.11.0):
     - abseil/algorithm (= 0.20200225.0)
     - abseil/base (= 0.20200225.0)
@@ -487,6 +493,7 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Database
   - Firebase/Firestore
 
 SPEC REPOS:
@@ -498,6 +505,7 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseDatabase
     - FirebaseFirestore
     - FirebaseInstallations
     - GoogleAppMeasurement
@@ -518,6 +526,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: d96d73aba85d192d7a7aa0b86dd6d7f8ec170b4b
   FirebaseCore: 2f4f85b453cc8fea4bb2b37e370007d2bcafe3f0
   FirebaseCoreDiagnostics: 64d9709d804a6c25bd77841371c1fcfd909d5601
+  FirebaseDatabase: ff9b4c7bee14d9f561f26c64a28ac083989f03d5
   FirebaseFirestore: 3b2e4b532c68809b3df5f8d39d28b3398ffc196b
   FirebaseInstallations: 044eede8a049bce71c4541ee68d6e4364fcbe774
   GoogleAppMeasurement: aa3cb422fab2b05d2efac543a5720d1a85b9dea5
@@ -530,6 +539,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
 
-PODFILE CHECKSUM: ddd28cbb60d657e3b35eadd2f2b013082c588a72
+PODFILE CHECKSUM: 7eeb6a3aa6f4bec8bd3376df99c5e0d9000e94a7
 
 COCOAPODS: 1.11.2
