@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AddTestData()
+        //AddTestData()
         
         // Do any additional setup after loading the view.
         if FirebaseAuth.Auth.auth().currentUser != nil{
@@ -30,17 +30,17 @@ class ViewController: UIViewController {
     
     func AddTestData(){
         var event:[String:Any] = [
-            "id": "E000001",
-            "name": "Hunter Badminton Training Camp",
-            "type": "Sports",
-            "desc": "Making badminton available for everyone",
-            "pax": 20,
-            "date": "31/01/2022",
-            "address": "535 Clementi Road Singapore 599489",
-            "host_name": "John Clement",
-            "num_attendees": 15
+            "id": "E000007",
+            "name": "Plane Watching",
+            "type": "Entertainment",
+            "desc": "Watch and learn about the different planes that take off and land at Singapore Changi Airport",
+            "pax":10,
+            "date": "28/02/2022",
+            "address": "Changi Airport Terminal 3, 65, Airport Boulevard, Singapore 819663",
+            "host_name": "Mr Tay",
+            "num_attendees": 5
         ]
-        database.child("Event").setValue(event)
+        database.child("Event").childByAutoId().setValue(event)
     }
 }
 

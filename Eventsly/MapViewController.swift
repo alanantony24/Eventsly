@@ -18,6 +18,8 @@ class MapViewController:UIViewController, MKMapViewDelegate{
     
     let regionRadius:CLLocationDistance = 1000
     
+    var locationAndEventDict:[String:String] = [:]
+    
     func centerMapOnLocation(location:CLLocation){
         let coordinateRegion = MKCoordinateRegion(
             center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius
@@ -45,44 +47,56 @@ class MapViewController:UIViewController, MKMapViewDelegate{
         locationManager.delegate = locationDelegate
         locationDelegate.locationCallback = { location in
             self.latestLocation = location
-            let lat = String(format: "Lat: %3.8f", location.coordinate.latitude)
-            let long = String(format: "Long: %3.8f", location.coordinate.longitude)
+            let lat = String(format: "Lat(CurrentLoc): %3.8f", location.coordinate.latitude)
+            let long = String(format: "Long(CurrentLoc): %3.8f", location.coordinate.longitude)
             print("\(lat), \(long)")
             
-            self.centerMapOnLocation(location: location)
-            self.annotation.coordinate = location.coordinate
-            self.annotation.title = "Me"
-            self.annotation.subtitle = "My current location"
-            self.map.addAnnotation(self.annotation)
+            //self.centerMapOnLocation(location: location)
+
             self.map.showsUserLocation = true
         }
         
         database.child("Event").observeSingleEvent(of: .value, with: { snapshot in
-            guard let value = snapshot.value as? [String:Any] else {
+            guard let dataDict = snapshot.value as? [String:Any] else {
                 return
             }
-            print("Value : \(value["address"]!)")
             
-            let geoCoder = CLGeocoder()
+            var event:[String:Any]
+            var address:String
+            var eventName:String = "Event Name"
             
-            geoCoder.geocodeAddressString(value["address"]! as! String) { p, e in
-                let lat = String(
-                    format: "Lat: %3.12f", p![0].location!.coordinate.latitude)
+            for (key,value) in dataDict{
                 
-                let long = String(
-                    format: "Lat: %3.12f", p![0].location!.coordinate.latitude)
+                event = dataDict[key] as! [String:Any]
                 
-                print("\(lat), \(long)")
+                address = event["address"] as! String
                 
-                var locationPin:CLLocation = CLLocation(latitude:p![0].location!.coordinate.latitude, longitude: p![0].location!.coordinate.longitude)
-                let annotation = MKPointAnnotation()
+                eventName = event["name"] as! String
                 
-                annotation.coordinate = locationPin.coordinate
-                annotation.title = "Ngee Ann Polytechnic"
-                annotation.subtitle = "School of ICT"
-                self.map.addAnnotation(annotation)
+                self.locationAndEventDict[eventName] = address
+                
+                self.GeoCoder(locEventDict: self.locationAndEventDict)
             }
         })
     }
     
+    func GeoCoder(locEventDict:[String:String]){
+        
+        let geoCoder = CLGeocoder()
+        
+        for (key, value) in locEventDict{
+            geoCoder.geocodeAddressString(value) { p, e in
+                let lat = String(
+                    format: "Lat (Address): %3.12f", p![0].location!.coordinate.latitude)
+                let long = String(
+                    format: "Lat (Address): %3.12f", p![0].location!.coordinate.latitude)
+                print("\(lat), \(long)")
+                let locationPin:CLLocation = CLLocation(latitude:p![0].location!.coordinate.latitude, longitude: p![0].location!.coordinate.longitude)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = locationPin.coordinate
+                annotation.title = key
+                self.map.addAnnotation(annotation)
+            }
+        }
+    }
 }
