@@ -82,13 +82,6 @@ class GoingEventDetailsViewController: UIViewController {
                 geoCoder.geocodeAddressString(
                     goingEventDetail.address,
                     completionHandler: {p,e in
-                        let lat = String(
-                            format: "Lat: %3.12f", p![0].location!.coordinate.latitude)
-                        let long = String(
-                            format: "Long: %3.12f", p![0].location!.coordinate.longitude)
-
-                        print("Address - \(lat), \(long)")
-                        
                         self.centerMapOnLocation(location: p![0].location!)
                         
                         let annotation = MKPointAnnotation()
