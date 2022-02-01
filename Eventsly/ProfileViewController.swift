@@ -11,9 +11,18 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
+    var appDelegate = UIApplication.shared.delegate as! AppDelegate
+
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblUsername: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let loggedinUser = appDelegate.loggedinUser
+        
+        lblName.text = "\(loggedinUser.name)"
+        lblUsername.text = "Username: \(loggedinUser.username)"
     }
     
     @IBAction func logOutBtn(_ sender: Any) {

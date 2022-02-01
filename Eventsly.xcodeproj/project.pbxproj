@@ -29,6 +29,10 @@
 		CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */; };
 		CEA4A4A627995A5200B9C224 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A527995A5200B9C224 /* Event.swift */; };
 		CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A927995E2E00B9C224 /* User.swift */; };
+		CEF7B64627A8D4B200B32765 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7B64527A8D4B200B32765 /* DiscoverViewController.swift */; };
+		CEF7B64A27A8F0F400B32765 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7B64927A8F0F400B32765 /* EventDetailsViewController.swift */; };
+		CEF7B64C27A931AF00B32765 /* GoingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7B64B27A931AF00B32765 /* GoingViewController.swift */; };
+		CEF7B64E27A9425C00B32765 /* GoingEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7B64D27A9425C00B32765 /* GoingEventDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CEA4A4A527995A5200B9C224 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CEA4A4A927995E2E00B9C224 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CEF7B64527A8D4B200B32765 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		CEF7B64927A8F0F400B32765 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
+		CEF7B64B27A931AF00B32765 /* GoingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoingViewController.swift; sourceTree = "<group>"; };
+		CEF7B64D27A9425C00B32765 /* GoingEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoingEventDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,10 @@
 				AD75F050279FDBA6009ACBE0 /* HostViewController.swift */,
 				0E87E18B27A2B18E007E31F7 /* LocationDelegate.swift */,
 				0E87E18D27A2B1A4007E31F7 /* MapViewController.swift */,
+				CEF7B64527A8D4B200B32765 /* DiscoverViewController.swift */,
+				CEF7B64927A8F0F400B32765 /* EventDetailsViewController.swift */,
+				CEF7B64B27A931AF00B32765 /* GoingViewController.swift */,
+				CEF7B64D27A9425C00B32765 /* GoingEventDetailsViewController.swift */,
 			);
 			path = Eventsly;
 			sourceTree = "<group>";
@@ -256,6 +268,7 @@
 				0EA92B5D2796940D002D9CED /* LoginViewController.swift in Sources */,
 				CEA4A4A627995A5200B9C224 /* Event.swift in Sources */,
 				AD75F051279FDBA6009ACBE0 /* HostViewController.swift in Sources */,
+				CEF7B64E27A9425C00B32765 /* GoingEventDetailsViewController.swift in Sources */,
 				0EA92B5F27969446002D9CED /* SignUpViewController.swift in Sources */,
 				0E87E18C27A2B18E007E31F7 /* LocationDelegate.swift in Sources */,
 				0EA92B5B279693E8002D9CED /* HomeViewController.swift in Sources */,
@@ -263,8 +276,11 @@
 				0E02AEC52792EE7700764DA6 /* AppDelegate.swift in Sources */,
 				0EE385E4279D020F00AEEC1D /* Utilities.swift in Sources */,
 				0EE385E8279D1F0D00AEEC1D /* Constants.swift in Sources */,
+				CEF7B64A27A8F0F400B32765 /* EventDetailsViewController.swift in Sources */,
 				0EE59407279A6A9600A7AA3C /* SignUpAndLoginController.swift in Sources */,
+				CEF7B64627A8D4B200B32765 /* DiscoverViewController.swift in Sources */,
 				0E02AEC72792EE7700764DA6 /* SceneDelegate.swift in Sources */,
+				CEF7B64C27A931AF00B32765 /* GoingViewController.swift in Sources */,
 				CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */,
 				CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */,
 				0E02AECF2792EE7700764DA6 /* Eventsly.xcdatamodeld in Sources */,

@@ -14,12 +14,12 @@ class Event {
     var type:String
     var desc:String
     var pax:Int
-    var date:Date
+    var date:String
     var address:String
     var host_name:String
     var num_attendees:Int
     
-    init(id:String, name:String, type:String, desc:String, pax:Int, date:Date, address:String, host_name:String, num_attendees:Int) {
+    init(id:String, name:String, type:String, desc:String, pax:Int, date:String, address:String, host_name:String, num_attendees:Int) {
         self.id = id
         self.name = name
         self.type = type

@@ -11,6 +11,10 @@ import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    public var selectedEvent:Int = 0
+    public var selectedGoingEvent:Int = 0
+    public var loggedinUser:User = User(name: "", username: "", password: "", email: "", phone: 0)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
