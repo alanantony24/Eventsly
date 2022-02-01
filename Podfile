@@ -12,5 +12,6 @@ target 'Eventsly' do
     pod 'Firebase/Core'
     pod 'Firebase/Firestore'
     pod 'Firebase/Database'
+    pod 'lottie-ios'
 
 end

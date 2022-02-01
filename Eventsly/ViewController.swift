@@ -8,14 +8,18 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import Lottie
 
 class ViewController: UIViewController {
 
     private let database = Database.database().reference()
     
+    let animationView = AnimationView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //AddTestData()
+        setupAnimation()
         
         // Do any additional setup after loading the view.
         if FirebaseAuth.Auth.auth().currentUser != nil{
@@ -41,6 +45,16 @@ class ViewController: UIViewController {
             "num_attendees": 5
         ]
         database.child("Event").childByAutoId().setValue(event)
+    }
+    
+    func setupAnimation(){
+        animationView.animation = Animation.named("loginsignup")
+        animationView.frame = CGRect(x: 50, y: 200, width: 300, height: 300)
+        animationView.backgroundColor = .white
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
+        view.addSubview(animationView)
     }
 }
 
