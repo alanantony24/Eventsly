@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class GoingEventDetailsViewController: UIViewController {
     
-    var selectedEvent:Event = Event(id: "", name: "", type: "", desc: "", pax: 0, date: "", address: "", host_name: "", num_attendees: 0)
+    var selectedEvent:Event = Event(id: "", name: "", type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
     
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -51,7 +51,7 @@ class GoingEventDetailsViewController: UIViewController {
                 let eventID = dict["id"] as! String
                 let eventName = dict["name"] as! String
                 
-                let goingEvent:Event = Event(id: eventID, name: eventName, type: "", desc: "", pax: 0, date: "", address: "", host_name: "", num_attendees: 0)
+                let goingEvent:Event = Event(id: eventID, name: eventName, type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
                 
                 goingEventList.append(goingEvent)
             }
@@ -63,16 +63,17 @@ class GoingEventDetailsViewController: UIViewController {
                 let name = value?["name"] as? String ?? ""
                 let type = value?["type"] as? String ?? ""
                 let desc = value?["desc"] as? String ?? ""
-                let pax = value?["pax"] as? Int ?? 0
+                let pax = value?["pax"] as? String ?? ""
                 let date = value?["date"] as? String ?? ""
+                let time = value?["time"] as? String ?? ""
                 let address = value?["address"] as? String ?? ""
                 let host_name = value?["host_name"] as? String ?? ""
-                let num_attendees = value?["num_attendees"] as? Int ?? 0
+                let num_attendees = value?["num_attendees"] as? String ?? ""
                 
-                let goingEventDetail:Event = Event(id: selectedEventID, name: name, type: type, desc: desc, pax: pax, date: date, address: address, host_name: host_name, num_attendees: num_attendees)
+                let goingEventDetail:Event = Event(id: selectedEventID, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
                 
                 self.lblName.text = "\(goingEventDetail.name)"
-                self.lblDate.text = "Date: \(goingEventDetail.date)"
+                self.lblDate.text = "Date & Time: \(goingEventDetail.date), \(goingEventDetail.time)"
                 self.lblDesc.text = "\(goingEventDetail.desc)"
                 self.lblHost.text = "Host: \(goingEventDetail.host_name)"
                 self.lblAttendees.text = "Attendees: \(goingEventDetail.num_attendees)/\(goingEventDetail.pax)"

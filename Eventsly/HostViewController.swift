@@ -10,7 +10,10 @@ import UIKit
 import FirebaseDatabase
 
 class HostViewController:UIViewController, UITextViewDelegate, UINavigationControllerDelegate{
+    
     let appdelgate = (UIApplication.shared.delegate) as! AppDelegate
+    
+    var eventCount:Int = 0
     
     @IBOutlet weak var descriptionInput: UITextField!
     @IBOutlet weak var numofPaxInput: UITextField!
@@ -93,18 +96,63 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
             present(alert, animated: true, completion: nil)
         }
         else{
-            //Upload Data Here
             let ref = Database.database().reference()
-            ref.child("Event").childByAutoId().setValue(["name": nameInput.text!, "type": categoryInput.text!, "desc": descriptionInput.text!, "num_attendees": numofPaxInput.text!, "date":dateInput.text!, "time":timeInput.text!, "address":locationInput.text!])
-            
+
+            //Get number of events to generate ID
+            ref.child("Event").observe(.value, with: { (snapshot) in
+                
+                for event in snapshot.children.allObjects as! [DataSnapshot] {
+                     
+                    self.eventCount = self.eventCount + 1
+                }
+            })
+
+            //alert user on creation success
             let alertController = UIAlertController(title: "You have successfully submitted the hosting information", message: "Thank you and have a nice day!", preferredStyle: .alert)
             let OKAction = UIAlertAction(title: "Ok", style: .default) {
                 (action: UIAlertAction!) in
                 // Code in this block will trigger when OK button tapped.
                 print("Ok button tapped");
+                
+                //generate unique event id
+                var eventID:String = ""
+                
+                if (self.eventCount >= 0 && self.eventCount < 9)
+                {
+                    self.eventCount = self.eventCount + 1
+                    eventID = "E000" + String(self.eventCount)
+                }
+                else if (self.eventCount >= 9 && self.eventCount < 99)
+                {
+                    self.eventCount = self.eventCount + 1
+                    eventID = "E00" + String(self.eventCount)
+                }
+                else if (self.eventCount >= 99 && self.eventCount < 999)
+                {
+                    self.eventCount = self.eventCount + 1
+                    eventID = "E0" + String(self.eventCount)
+                }
+                
+                //upload data
+                let postNewEvent = ["id": eventID,
+                                    "name": self.nameInput.text!,
+                                    "type": self.categoryInput.text!,
+                                    "desc": self.descriptionInput.text!,
+                                    "pax": self.numofPaxInput.text!,
+                                    "date": self.dateInput.text!,
+                                    "time": self.timeInput.text!,
+                                    "address": self.locationInput.text!,
+                                    "host_name": self.appdelgate.loggedinUser.name,
+                                    "num_attendees": "0"] as [String : Any]
+                let childUpdatesNewEvent = ["Event/\(eventID)/": postNewEvent]
+                ref.updateChildValues(childUpdatesNewEvent)
+                
+                
+                self.tabBarController?.selectedIndex = 0
             }
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion: nil)
+            
         }
     }
 }

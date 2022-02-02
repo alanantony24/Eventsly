@@ -31,13 +31,14 @@ class DiscoverViewController: UITableViewController {
                 let name = dict["name"] as! String
                 let type = dict["type"] as! String
                 let desc = dict["desc"] as! String
-                let pax = dict["pax"] as! Int
+                let pax = dict["pax"] as! String
                 let date = dict["date"] as! String
+                let time = dict["time"] as! String
                 let address = dict["address"] as! String
                 let host_name = dict["host_name"] as! String
-                let num_attendees = dict["num_attendees"] as! Int
+                let num_attendees = dict["num_attendees"] as! String
 
-                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: pax, date: date, address: address, host_name: host_name, num_attendees: num_attendees)
+                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
                 
                 eventList.append(newEvent)
             }

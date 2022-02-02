@@ -30,7 +30,7 @@ class GoingViewController: UITableViewController {
                 let eventID = dict["id"] as! String
                 let eventName = dict["name"] as! String
                 
-                let goingEvent:Event = Event(id: eventID, name: eventName, type: "", desc: "", pax: 0, date: "", address: "", host_name: "", num_attendees: 0)
+                let goingEvent:Event = Event(id: eventID, name: eventName, type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
                 
                 goingEventList.append(goingEvent)
             }

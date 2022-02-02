@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Welcome!-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="HomeViewController" customModule="Eventsly" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,29 +16,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Welcome, User!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdn-VP-eE0">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdn-VP-eE0">
                                 <rect key="frame" x="20" y="170" width="374" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="welcomepic" translatesAutoresizingMaskIntoConstraints="NO" id="2ht-cG-IwW">
-                                <rect key="frame" x="20" y="240" width="374" height="553"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="welcomepic" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gpc-mj-OQr">
+                                <rect key="frame" x="20" y="239" width="374" height="534"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2ht-cG-IwW" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="A83-v9-6fl"/>
+                            <constraint firstItem="gpc-mj-OQr" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="6aQ-aN-bKv"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="gpc-mj-OQr" secondAttribute="bottom" constant="40" id="Fo2-li-OCW"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="mdn-VP-eE0" secondAttribute="trailing" constant="20" id="G1J-XU-bpN"/>
                             <constraint firstItem="mdn-VP-eE0" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="HJU-1U-opO"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="gpc-mj-OQr" secondAttribute="trailing" constant="20" id="OuA-hR-qM3"/>
+                            <constraint firstItem="gpc-mj-OQr" firstAttribute="top" secondItem="mdn-VP-eE0" secondAttribute="bottom" constant="40" id="QdT-hV-U1n"/>
                             <constraint firstItem="mdn-VP-eE0" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="30" id="bCB-GV-3Lw"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="2ht-cG-IwW" secondAttribute="bottom" constant="20" id="cSw-19-KR0"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="2ht-cG-IwW" secondAttribute="trailing" constant="20" id="nRa-VG-muY"/>
-                            <constraint firstItem="2ht-cG-IwW" firstAttribute="top" secondItem="mdn-VP-eE0" secondAttribute="bottom" constant="41" id="urC-A3-IBg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="gWB-pm-L0x">
+                    <navigationItem key="navigationItem" title="Welcome!" id="gWB-pm-L0x">
                         <barButtonItem key="rightBarButtonItem" title="Profile" image="person.circle" catalog="system" id="XHf-mw-0mR">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -106,6 +106,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="zhB-1b-3d0">
                         <barButtonItem key="rightBarButtonItem" title="Edit" image="square.and.pencil" catalog="system" id="KhR-Ha-b4y">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <segue destination="vRS-ln-F59" kind="show" id="tNO-Gb-npO"/>
                             </connections>
@@ -665,6 +666,7 @@
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="location.circle" catalog="system" id="xsb-hw-qr3">
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
                                     <segue destination="ZnY-cg-Gn0" kind="show" id="nG1-eb-Jl7"/>
                                 </connections>
@@ -702,7 +704,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hvq-kh-Zwa">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hvq-kh-Zwa">
                                 <rect key="frame" x="20" y="243" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -859,7 +861,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="svL-sR-kUv"/>
+        <segue reference="iwq-Ei-OJ6"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="homekit" catalog="system" width="128" height="106"/>
@@ -870,6 +872,9 @@
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <image name="ticket" catalog="system" width="128" height="84"/>
         <image name="welcomepic" width="4167" height="4168"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

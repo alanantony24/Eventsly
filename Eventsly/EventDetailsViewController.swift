@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class EventDetailsViewController: UIViewController {
     
-    var selectedEvent:Event = Event(id: "", name: "", type: "", desc: "", pax: 0, date: "", address: "", host_name: "", num_attendees: 0)
+    var selectedEvent:Event = Event(id: "", name: "", type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
     
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -52,13 +52,14 @@ class EventDetailsViewController: UIViewController {
                 let name = dict["name"] as! String
                 let type = dict["type"] as! String
                 let desc = dict["desc"] as! String
-                let pax = dict["pax"] as! Int
+                let pax = dict["pax"] as! String
                 let date = dict["date"] as! String
+                let time = dict["time"] as! String
                 let address = dict["address"] as! String
                 let host_name = dict["host_name"] as! String
-                let num_attendees = dict["num_attendees"] as! Int
+                let num_attendees = dict["num_attendees"] as! String
 
-                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: pax, date: date, address: address, host_name: host_name, num_attendees: num_attendees)
+                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
 
                 eventList.append(newEvent)
             }
@@ -66,7 +67,7 @@ class EventDetailsViewController: UIViewController {
             self.selectedEvent = eventList[self.appDelegate.selectedEvent]
             
             self.lblName.text = "\(self.selectedEvent.name)"
-            self.lblDate.text = "Date: \(self.selectedEvent.date)"
+            self.lblDate.text = "Date & Time: \(self.selectedEvent.date), \(self.selectedEvent.time)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
             self.lblHost.text = "Host: \(self.selectedEvent.host_name)"
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"
@@ -112,17 +113,18 @@ class EventDetailsViewController: UIViewController {
                     
                     selectedEvent.num_attendees = selectedEvent.num_attendees + 1
                     let ref = Database.database().reference()
-                    guard let key = ref.child("Event").childByAutoId().key else { return }
+//                    guard let key = ref.child("Event").childByAutoId().key else { return }
                     // update Event num_attendees
                     let postEvent = ["id": selectedEvent.id,
-                                "name": selectedEvent.name,
-                                "type": selectedEvent.type,
-                                "desc": selectedEvent.desc,
-                                "pax": selectedEvent.pax,
-                                "date": selectedEvent.date,
-                                "address": selectedEvent.address,
-                                "host_name": selectedEvent.host_name,
-                                "num_attendees": selectedEvent.num_attendees] as [String : Any]
+                                     "name": selectedEvent.name,
+                                     "type": selectedEvent.type,
+                                     "desc": selectedEvent.desc,
+                                     "pax": selectedEvent.pax,
+                                     "date": selectedEvent.date,
+                                     "time": selectedEvent.time,
+                                     "address": selectedEvent.address,
+                                     "host_name": selectedEvent.host_name,
+                                     "num_attendees": selectedEvent.num_attendees] as [String : Any]
                     let childUpdatesEvent = ["Event/\(selectedEvent.id)/": postEvent]
                     ref.updateChildValues(childUpdatesEvent)
                     
