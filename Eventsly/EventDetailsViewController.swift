@@ -129,79 +129,80 @@ class EventDetailsViewController: UIViewController {
             
             }
  
-            //check for attendees limit
-            if (self.selectedEvent.num_attendees < self.selectedEvent.pax && self.userJoinedEvent == false)
-            {
-                let alertViewTrue = UIAlertController(
-                    title: "Confirmation",
-                    message: "Do you confirm to join this event?",
-                    preferredStyle: UIAlertController.Style.alert)
-
-                alertViewTrue.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in }))
-                
-                alertViewTrue.addAction(UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { [self] _ in
-                    
-                    let alertViewConfirm = UIAlertController(
-                        title: "Event Joined",
-                        message: "You have joined this event",
-                        preferredStyle: UIAlertController.Style.alert)
-
-                    alertViewConfirm.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { _ in
-                        
-                        selectedEvent.num_attendees = selectedEvent.num_attendees + 1
-                        let ref = Database.database().reference()
-
-                        // update Event num_attendees
-                        let postEvent = ["id": selectedEvent.id,
-                                         "name": selectedEvent.name,
-                                         "type": selectedEvent.type,
-                                         "desc": selectedEvent.desc,
-                                         "pax": String(selectedEvent.pax),
-                                         "date": selectedEvent.date,
-                                         "time": selectedEvent.time,
-                                         "address": selectedEvent.address,
-                                         "host_name": selectedEvent.host_name,
-                                         "num_attendees": String(selectedEvent.num_attendees)] as [String : Any]
-                        let childUpdatesEvent = ["Event/\(selectedEvent.id)/": postEvent]
-                        ref.updateChildValues(childUpdatesEvent)
-                        
-                        // update UserJoined events id
-                        let postJoined = ["id": selectedEvent.id, "name": selectedEvent.name] as [String : Any]
-                        let childUpdatesJoined = ["Joined/\(appDelegate.loggedinUser.name)/\(selectedEvent.id)": postJoined]
-                        ref.updateChildValues(childUpdatesJoined)
-                        
-                        self.tabBarController?.selectedIndex = 3
-                    }))
-
-                    self.present(alertViewConfirm, animated: true, completion: nil)
-                    
-                    }))
-
-                self.present(alertViewTrue, animated: true, completion: nil)
-            }
-            else if (self.userJoinedEvent == true)
-            {
-                let alertViewJoined = UIAlertController(
-                    title: "Event Joined Already",
-                    message: "You have joined this event already.",
-                    preferredStyle: UIAlertController.Style.alert)
-
-                alertViewJoined.addAction(UIAlertAction(title: "Noted", style: UIAlertAction.Style.default, handler: { _ in }))
-
-                self.present(alertViewJoined, animated: true, completion: nil)
-            }
-            else
-            {
-                let alertViewFalse = UIAlertController(
-                    title: "Maximum Number of Pax Reached",
-                    message: "This event has reached its maximum pax limit. You will not be able to join this event.",
-                    preferredStyle: UIAlertController.Style.alert)
-
-                alertViewFalse.addAction(UIAlertAction(title: "Noted", style: UIAlertAction.Style.default, handler: { _ in }))
-
-                self.present(alertViewFalse, animated: true, completion: nil)
-            }
         })
+        
+        //check for attendees limit
+        if (self.selectedEvent.num_attendees < self.selectedEvent.pax && self.userJoinedEvent == false)
+        {
+            let alertViewTrue = UIAlertController(
+                title: "Confirmation",
+                message: "Do you confirm to join this event?",
+                preferredStyle: UIAlertController.Style.alert)
+
+            alertViewTrue.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in }))
+            
+            alertViewTrue.addAction(UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { [self] _ in
+                
+                let alertViewConfirm = UIAlertController(
+                    title: "Event Joined",
+                    message: "You have joined this event",
+                    preferredStyle: UIAlertController.Style.alert)
+
+                alertViewConfirm.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { _ in
+                    
+                    selectedEvent.num_attendees = selectedEvent.num_attendees + 1
+                    let ref = Database.database().reference()
+
+                    // update Event num_attendees
+                    let postEvent = ["id": selectedEvent.id,
+                                     "name": selectedEvent.name,
+                                     "type": selectedEvent.type,
+                                     "desc": selectedEvent.desc,
+                                     "pax": String(selectedEvent.pax),
+                                     "date": selectedEvent.date,
+                                     "time": selectedEvent.time,
+                                     "address": selectedEvent.address,
+                                     "host_name": selectedEvent.host_name,
+                                     "num_attendees": String(selectedEvent.num_attendees)] as [String : Any]
+                    let childUpdatesEvent = ["Event/\(selectedEvent.id)/": postEvent]
+                    ref.updateChildValues(childUpdatesEvent)
+                    
+                    // update UserJoined events id
+                    let postJoined = ["id": selectedEvent.id, "name": selectedEvent.name] as [String : Any]
+                    let childUpdatesJoined = ["Joined/\(appDelegate.loggedinUser.name)/\(selectedEvent.id)": postJoined]
+                    ref.updateChildValues(childUpdatesJoined)
+                                            
+                    self.tabBarController?.selectedIndex = 3
+                }))
+
+                self.present(alertViewConfirm, animated: true, completion: nil)
+                
+                }))
+
+            self.present(alertViewTrue, animated: true, completion: nil)
+        }
+        else if (self.userJoinedEvent == true)
+        {
+            let alertViewJoined = UIAlertController(
+                title: "Event Joined Already",
+                message: "You have joined this event already.",
+                preferredStyle: UIAlertController.Style.alert)
+
+            alertViewJoined.addAction(UIAlertAction(title: "Noted", style: UIAlertAction.Style.default, handler: { _ in }))
+
+            self.present(alertViewJoined, animated: true, completion: nil)
+        }
+        else
+        {
+            let alertViewFalse = UIAlertController(
+                title: "Maximum Number of Pax Reached",
+                message: "This event has reached its maximum pax limit. You will not be able to join this event.",
+                preferredStyle: UIAlertController.Style.alert)
+
+            alertViewFalse.addAction(UIAlertAction(title: "Noted", style: UIAlertAction.Style.default, handler: { _ in }))
+
+            self.present(alertViewFalse, animated: true, completion: nil)
+        }
         
     }
     
