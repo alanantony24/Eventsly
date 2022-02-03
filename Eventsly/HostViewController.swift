@@ -29,6 +29,10 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
     }
     
     @IBAction func cancelBtn(_ sender: Any) {
+        ClearInput()
+    }
+    
+    func ClearInput(){
         nameInput.text = ""
         categoryInput.text = ""
         descriptionInput.text = ""
@@ -42,21 +46,21 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
         // Missing Input Validation
         if (nameInput == nil || nameInput.text == "") {
             let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your name for hosting", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Comfirm", style: .default,handler: { [weak self] (_) in
+            alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self] (_) in
                 return
             }))
             present(alert, animated: true, completion: nil)
         }
         else if (categoryInput == nil || categoryInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "please key in your category for hosting", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Comfirm", style: .default,handler: { [weak self]
+            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your category for hosting", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
             }))
             present(alert, animated: true, completion: nil)
         }
         else if (descriptionInput == nil || descriptionInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "please key in your description for hosting", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your description for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
@@ -64,7 +68,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
             present(alert, animated: true, completion: nil)
         }
         else if (numofPaxInput == nil || numofPaxInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "please key in the number of pax for hosting", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in the number of pax for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
@@ -72,7 +76,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
             present(alert, animated: true, completion: nil)
         }
         else if (dateInput == nil || dateInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "please key in your date for hosting", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your date for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
@@ -80,7 +84,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
             present(alert, animated: true, completion: nil)
         }
         else if (timeInput == nil || timeInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "please key in your time for hosting", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your time for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
@@ -88,7 +92,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
             present(alert, animated: true, completion: nil)
         }
         else if (locationInput == nil || locationInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "please key in your location for hosting", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your location for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
@@ -146,13 +150,12 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
                                     "num_attendees": "0"] as [String : Any]
                 let childUpdatesNewEvent = ["Event/\(eventID)/": postNewEvent]
                 ref.updateChildValues(childUpdatesNewEvent)
+                self.ClearInput()
+                self.tabBarController?.selectedIndex = 1
                 
-                
-                self.tabBarController?.selectedIndex = 0
             }
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion: nil)
-            
         }
     }
 }

@@ -18,5 +18,6 @@ struct Constants{
         static let firstStoryBoard = "Main"
         static let firstViewController = "FirstVC"
         static let loginAndSignUp = "LoginAndSignUp"
+        static let discoverPage = "DiscoverPage"
     }
 }
