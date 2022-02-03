@@ -83,14 +83,17 @@ class GoingEventDetailsViewController: UIViewController {
                 geoCoder.geocodeAddressString(
                     goingEventDetail.address,
                     completionHandler: {p,e in
-                        self.centerMapOnLocation(location: p![0].location!)
-                        
-                        let annotation = MKPointAnnotation()
-                        annotation.coordinate.latitude = p![0].location!.coordinate.latitude
-                        annotation.coordinate.longitude = p![0].location!.coordinate.longitude
-                        annotation.title = goingEventDetail.name
-                        annotation.subtitle = goingEventDetail.id
-                        self.map.addAnnotation(annotation)
+                        if (p != nil)
+                        {
+                            self.centerMapOnLocation(location: p![0].location!)
+                            
+                            let annotation = MKPointAnnotation()
+                            annotation.coordinate.latitude = p![0].location!.coordinate.latitude
+                            annotation.coordinate.longitude = p![0].location!.coordinate.longitude
+                            annotation.title = goingEventDetail.name
+                            annotation.subtitle = goingEventDetail.id
+                            self.map.addAnnotation(annotation)
+                        }
                     })
             })
         })

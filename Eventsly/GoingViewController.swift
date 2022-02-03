@@ -69,7 +69,14 @@ class GoingViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Events You Are Going"
+        if (goingEventList.count == 0)
+        {
+            return "You did not join any Events... Discover Events now!"
+        }
+        else
+        {
+            return "Events You Are Going"
+        }
     }
     
 }

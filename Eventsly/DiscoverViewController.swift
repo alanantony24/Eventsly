@@ -25,22 +25,26 @@ class DiscoverViewController: UITableViewController {
             
             for event in snapshot.children.allObjects as! [DataSnapshot] {
                  
-                let dict = event.value as! [String: AnyObject]
+                if (event.hasChildren())
+                {
+                    let dict = event.value as! [String: AnyObject]
 
-                let id = dict["id"] as! String
-                let name = dict["name"] as! String
-                let type = dict["type"] as! String
-                let desc = dict["desc"] as! String
-                let pax = dict["pax"] as! String
-                let date = dict["date"] as! String
-                let time = dict["time"] as! String
-                let address = dict["address"] as! String
-                let host_name = dict["host_name"] as! String
-                let num_attendees = dict["num_attendees"] as! String
+                    let id = dict["id"] as! String
+                    let name = dict["name"] as! String
+                    let type = dict["type"] as! String
+                    let desc = dict["desc"] as! String
+                    let pax = dict["pax"] as! String
+                    let date = dict["date"] as! String
+                    let time = dict["time"] as! String
+                    let address = dict["address"] as! String
+                    let host_name = dict["host_name"] as! String
+                    let num_attendees = dict["num_attendees"] as! String
 
-                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
+                    let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
+                    
+                    eventList.append(newEvent)
+                }
                 
-                eventList.append(newEvent)
             }
             
             self.eventList = eventList
@@ -77,7 +81,14 @@ class DiscoverViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "All Events"
+        if (eventList.count == 0)
+        {
+            return "There isn't any Events now... Try again later"
+        }
+        else
+        {
+            return "All Events"
+        }
     }
 
 }

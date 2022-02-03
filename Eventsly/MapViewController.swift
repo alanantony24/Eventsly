@@ -56,28 +56,49 @@ class MapViewController:UIViewController, MKMapViewDelegate{
             self.map.showsUserLocation = true
         }
         
-        database.child("Event").observeSingleEvent(of: .value, with: { snapshot in
-            guard let dataDict = snapshot.value as? [String:Any] else {
-                return
+//        database.child("Event").observeSingleEvent(of: .value, with: { snapshot in
+//            guard let dataDict = snapshot.value as? [String:Any] else {
+//                return
+//            }
+//
+//            var event:[String:Any]
+//            var address:String
+//            var eventName:String = "Event Name"
+//
+//            for (key,value) in dataDict{
+//
+//                event = dataDict[key] as! [String:Any]
+//
+//                address = event["address"] as! String
+//
+//                eventName = event["name"] as! String
+//
+//                self.locationAndEventDict[eventName] = address
+//
+//                self.GeoCoder(locEventDict: self.locationAndEventDict)
+//            }
+//        })
+        
+        database.child("Event").observe(.value, with: { (snapshot) in
+            
+            for event in snapshot.children.allObjects as! [DataSnapshot] {
+                 
+                if (event.hasChildren())
+                {
+                    let dict = event.value as! [String: AnyObject]
+
+                    let eventName = dict["name"] as! String
+                    let address = dict["address"] as! String
+
+                    self.locationAndEventDict[eventName] = address
+                    
+                }
+                
             }
             
-            var event:[String:Any]
-            var address:String
-            var eventName:String = "Event Name"
-            
-            for (key,value) in dataDict{
-                
-                event = dataDict[key] as! [String:Any]
-                
-                address = event["address"] as! String
-                
-                eventName = event["name"] as! String
-                
-                self.locationAndEventDict[eventName] = address
-                
-                self.GeoCoder(locEventDict: self.locationAndEventDict)
-            }
+            self.GeoCoder(locEventDict: self.locationAndEventDict)
         })
+        
     }
     
     func GeoCoder(locEventDict:[String:String]){
@@ -87,20 +108,18 @@ class MapViewController:UIViewController, MKMapViewDelegate{
         var annotationList:[MKAnnotation] = []
         for (key, value) in locEventDict{
             geoCoder.geocodeAddressString(value) { p, e in
-                let lat = String(
-                    format: "Lat (Address): %3.12f", p![0].location!.coordinate.latitude)
-                let long = String(
-                    format: "Lat (Address): %3.12f", p![0].location!.coordinate.latitude)
-                print("\(lat), \(long)")
-                let locationPin:CLLocation = CLLocation(latitude:p![0].location!.coordinate.latitude, longitude: p![0].location!.coordinate.longitude)
                 
-               
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = locationPin.coordinate
-                annotation.title = key
-                annotationList.append(annotation)
-                print(annotationList.count)
-                self.map.addAnnotations(annotationList)
+                if (p != nil)
+                {
+                    let locationPin:CLLocation = CLLocation(latitude:p![0].location!.coordinate.latitude, longitude: p![0].location!.coordinate.longitude)
+                   
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = locationPin.coordinate
+                    annotation.title = key
+                    annotationList.append(annotation)
+                    print(annotationList.count)
+                    self.map.addAnnotations(annotationList)
+                }
             }
         }
     }
