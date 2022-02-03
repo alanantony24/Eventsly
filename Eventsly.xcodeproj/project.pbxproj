@@ -16,6 +16,7 @@
 		0E02AED42792EE7900764DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E02AED22792EE7900764DA6 /* LaunchScreen.storyboard */; };
 		0E4245D627A9736F00BA9A53 /* loginsignup.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E4245D527A9736F00BA9A53 /* loginsignup.json */; };
 		0E4245D827A9821D00BA9A53 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E4245D727A9821D00BA9A53 /* done.json */; };
+		0E6CF7EE27ABA1D900B1D466 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */; };
 		0E87E18C27A2B18E007E31F7 /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87E18B27A2B18E007E31F7 /* LocationDelegate.swift */; };
 		0E87E18E27A2B1A4007E31F7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87E18D27A2B1A4007E31F7 /* MapViewController.swift */; };
 		0EA92B59279693D6002D9CED /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EA92B58279693D6002D9CED /* Home.storyboard */; };
@@ -51,6 +52,7 @@
 		0E02AED52792EE7900764DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E4245D527A9736F00BA9A53 /* loginsignup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loginsignup.json; sourceTree = "<group>"; };
 		0E4245D727A9821D00BA9A53 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
+		0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		0E87E18B27A2B18E007E31F7 /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
 		0E87E18D27A2B1A4007E31F7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0EA92B58279693D6002D9CED /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				CEF7B64D27A9425C00B32765 /* GoingEventDetailsViewController.swift */,
 				CE9D2D7E27ABA56100AF74E5 /* YourEventsViewController.swift */,
 				CE9D2D8027ABA8E600AF74E5 /* YourEventDetailsViewController.swift */,
+				0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */,
 			);
 			path = Eventsly;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				CE9D2D7F27ABA56100AF74E5 /* YourEventsViewController.swift in Sources */,
 				CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */,
 				CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */,
+				0E6CF7EE27ABA1D900B1D466 /* UpdateProfileViewController.swift in Sources */,
 				0E02AECF2792EE7700764DA6 /* Eventsly.xcdatamodeld in Sources */,
 				0E87E18E27A2B1A4007E31F7 /* MapViewController.swift in Sources */,
 			);
