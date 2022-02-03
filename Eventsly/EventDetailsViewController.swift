@@ -14,6 +14,7 @@ class EventDetailsViewController: UIViewController {
     
     var selectedEvent:Event = Event(id: "", name: "", type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
     var userJoinedEvent:Bool = false
+    let ref = Database.database().reference()
     
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -113,22 +114,22 @@ class EventDetailsViewController: UIViewController {
         var userJoined:Bool = false
         let ref = Database.database().reference()
         ref.child("Joined").child(appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
-                        
+
             for joined in snapshot.children.allObjects as! [DataSnapshot] {
-                 
+
                 let dict = joined.value as! [String: AnyObject]
 
                 let eventID = dict["id"] as! String
-                
+
                 if(eventID == self.selectedEvent.id)
                 {
                     userJoined = true
                 }
-                
+
                 self.userJoinedEvent = userJoined
-            
+
             }
- 
+
         })
         
         //check for attendees limit
@@ -142,6 +143,30 @@ class EventDetailsViewController: UIViewController {
             alertViewTrue.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in }))
             
             alertViewTrue.addAction(UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { [self] _ in
+                    
+                selectedEvent.num_attendees = selectedEvent.num_attendees + 1
+                let ref = Database.database().reference()
+
+                // update Event num_attendees
+                let postEvent = ["id": selectedEvent.id,
+                                 "name": selectedEvent.name,
+                                 "type": selectedEvent.type,
+                                 "desc": selectedEvent.desc,
+                                 "pax": String(selectedEvent.pax),
+                                 "date": selectedEvent.date,
+                                 "time": selectedEvent.time,
+                                 "address": selectedEvent.address,
+                                 "host_name": selectedEvent.host_name,
+                                 "num_attendees": String(selectedEvent.num_attendees)] as [String : Any]
+                let childUpdatesEvent = ["Event/\(selectedEvent.id)/": postEvent]
+                ref.updateChildValues(childUpdatesEvent)
+                
+                // update UserJoined events id
+                let postJoined = ["id": selectedEvent.id, "name": selectedEvent.name] as [String : Any]
+                let childUpdatesJoined = ["Joined/\(appDelegate.loggedinUser.name)/\(selectedEvent.id)": postJoined]
+                ref.updateChildValues(childUpdatesJoined)
+                                        
+                self.userJoinedEvent = true
                 
                 let alertViewConfirm = UIAlertController(
                     title: "Event Joined",
@@ -149,35 +174,14 @@ class EventDetailsViewController: UIViewController {
                     preferredStyle: UIAlertController.Style.alert)
 
                 alertViewConfirm.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: { _ in
-                    
-                    selectedEvent.num_attendees = selectedEvent.num_attendees + 1
-                    let ref = Database.database().reference()
-
-                    // update Event num_attendees
-                    let postEvent = ["id": selectedEvent.id,
-                                     "name": selectedEvent.name,
-                                     "type": selectedEvent.type,
-                                     "desc": selectedEvent.desc,
-                                     "pax": String(selectedEvent.pax),
-                                     "date": selectedEvent.date,
-                                     "time": selectedEvent.time,
-                                     "address": selectedEvent.address,
-                                     "host_name": selectedEvent.host_name,
-                                     "num_attendees": String(selectedEvent.num_attendees)] as [String : Any]
-                    let childUpdatesEvent = ["Event/\(selectedEvent.id)/": postEvent]
-                    ref.updateChildValues(childUpdatesEvent)
-                    
-                    // update UserJoined events id
-                    let postJoined = ["id": selectedEvent.id, "name": selectedEvent.name] as [String : Any]
-                    let childUpdatesJoined = ["Joined/\(appDelegate.loggedinUser.name)/\(selectedEvent.id)": postJoined]
-                    ref.updateChildValues(childUpdatesJoined)
-                                            
-                    self.tabBarController?.selectedIndex = 3
-                }))
-
-                self.present(alertViewConfirm, animated: true, completion: nil)
                 
+                    self.tabBarController?.selectedIndex = 3
+                    
                 }))
+                
+                self.present(alertViewConfirm, animated: true, completion: nil)
+
+            }))
 
             self.present(alertViewTrue, animated: true, completion: nil)
         }

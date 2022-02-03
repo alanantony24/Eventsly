@@ -11,7 +11,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 
-class SignUpViewController:UIViewController{
+class SignUpViewController:UIViewController,UITextFieldDelegate{
     
     @IBOutlet weak var nameFld: UITextField!
     @IBOutlet weak var userNameFld: UITextField!
@@ -26,6 +26,19 @@ class SignUpViewController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         SetupElements()
+        
+        nameFld.delegate = self
+        nameFld.clearButtonMode = .whileEditing
+        userNameFld.delegate = self
+        userNameFld.clearButtonMode = .whileEditing
+        emailFld.delegate = self
+        emailFld.clearButtonMode = .whileEditing
+        pwdFld.delegate = self
+        pwdFld.clearButtonMode = .whileEditing
+        cfmPwdFld.delegate = self
+        cfmPwdFld.clearButtonMode = .whileEditing
+        phoneNo.delegate = self
+        phoneNo.clearButtonMode = .whileEditing
     }
     
     func SetupElements(){
@@ -116,5 +129,15 @@ class SignUpViewController:UIViewController{
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameFld.resignFirstResponder()
+        userNameFld.resignFirstResponder()
+        emailFld.resignFirstResponder()
+        pwdFld.resignFirstResponder()
+        cfmPwdFld.resignFirstResponder()
+        phoneNo.resignFirstResponder()
+        return true
     }
 }

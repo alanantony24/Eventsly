@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 
-class LoginViewController:UIViewController{
+class LoginViewController: UIViewController, UITextFieldDelegate{
     
     @IBOutlet weak var emailFld: UITextField!
     @IBOutlet weak var pwdFld: UITextField!
@@ -20,6 +20,11 @@ class LoginViewController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         SetupElements()
+        
+        emailFld.delegate = self
+        emailFld.clearButtonMode = .whileEditing
+        pwdFld.delegate = self
+        pwdFld.clearButtonMode = .whileEditing
     }
     
     func SetupElements(){
@@ -52,6 +57,12 @@ class LoginViewController:UIViewController{
     @IBAction func backBtn(_ sender: Any) {
         //takes back to rootviewcontroller
         _ = navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        emailFld.resignFirstResponder()
+        pwdFld.resignFirstResponder()
+        return true
     }
 }
 

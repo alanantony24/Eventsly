@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class HostViewController:UIViewController, UITextViewDelegate, UINavigationControllerDelegate{
+class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelegate, UINavigationControllerDelegate{
     
     let appdelgate = (UIApplication.shared.delegate) as! AppDelegate
     
@@ -26,6 +26,21 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        descriptionInput.delegate = self
+        descriptionInput.clearButtonMode = .whileEditing
+        numofPaxInput.delegate = self
+        numofPaxInput.clearButtonMode = .whileEditing
+        dateInput.delegate = self
+        dateInput.clearButtonMode = .whileEditing
+        timeInput.delegate = self
+        timeInput.clearButtonMode = .whileEditing
+        locationInput.delegate = self
+        locationInput.clearButtonMode = .whileEditing
+        nameInput.delegate = self
+        nameInput.clearButtonMode = .whileEditing
+        categoryInput.delegate = self
+        categoryInput.clearButtonMode = .whileEditing
     }
     
     @IBAction func cancelBtn(_ sender: Any) {
@@ -157,5 +172,17 @@ class HostViewController:UIViewController, UITextViewDelegate, UINavigationContr
             alertController.addAction(OKAction)
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        descriptionInput.resignFirstResponder()
+        numofPaxInput.resignFirstResponder()
+        dateInput.resignFirstResponder()
+        timeInput.resignFirstResponder()
+        locationInput.resignFirstResponder()
+        nameInput.resignFirstResponder()
+        categoryInput.resignFirstResponder()
+        
+        return true
     }
 }
