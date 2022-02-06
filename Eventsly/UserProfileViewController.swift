@@ -94,20 +94,8 @@ class UserProfileViewController: UITableViewController {
             case 0: self.tableView.reloadData()
             case 1: self.tableView.reloadData()
             case 2: self.tableView.reloadData()
-            case 3:
-            do{
-                try FirebaseAuth.Auth.auth().signOut()
-                if true{
-                    let storyboard = UIStoryboard(name: Constants.Storyboard.firstStoryBoard, bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.firstViewController) as UIViewController
-                    vc.modalPresentationStyle = .fullScreen
-                    self.present(vc, animated: true, completion: nil)
-                }
-            }
-            catch{
-                print("An error occured")
-            }
-            
+            case 3: userLogoutAlert()
+                        
             default: self.tableView.reloadData()
         }
     }
@@ -120,6 +108,33 @@ class UserProfileViewController: UITableViewController {
             case 3: return ""
             default: return ""
         }
+    }
+    
+    func userLogoutAlert()
+    {
+        let alertViewLogout = UIAlertController(
+            title: "Log Out",
+            message: "Do you wish to log out from your current account?",
+            preferredStyle: UIAlertController.Style.alert)
+
+        alertViewLogout.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: { _ in }))
+
+        alertViewLogout.addAction(UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { _ in
+            do{
+                try FirebaseAuth.Auth.auth().signOut()
+                if true{
+                    let storyboard = UIStoryboard(name: Constants.Storyboard.firstStoryBoard, bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.firstViewController) as UIViewController
+                    vc.modalPresentationStyle = .fullScreen
+                    self.present(vc, animated: true, completion: nil)
+                }
+            }
+            catch{
+                print("An error occured")
+            }
+        }))
+        
+        self.present(alertViewLogout, animated: true, completion: nil)
     }
     
 }
