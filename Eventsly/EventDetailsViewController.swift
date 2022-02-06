@@ -75,6 +75,35 @@ class EventDetailsViewController: UIViewController {
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"
             self.lblAddress.text = "\(self.selectedEvent.address)"
             
+            //check if user joined event
+            let ref = Database.database().reference()
+            ref.child("Joined").child(self.appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
+
+                for joined in snapshot.children.allObjects as! [DataSnapshot] {
+
+                    let dict = joined.value as! [String: AnyObject]
+
+                    let eventID = dict["id"] as! String
+
+                    if(eventID == self.selectedEvent.id)
+                    {
+                        let alertViewJoined = UIAlertController(
+                            title: "Event Joined",
+                            message: "You have joined this event already.",
+                            preferredStyle: UIAlertController.Style.alert)
+
+                        alertViewJoined.addAction(UIAlertAction(title: "Noted", style: UIAlertAction.Style.default, handler: { _ in
+                            self.userJoinedEvent = true
+                        }))
+
+                        self.present(alertViewJoined, animated: true, completion: nil)
+                    }
+
+                }
+
+            })
+            
+            // display pin on location map
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(
                 self.selectedEvent.address,
@@ -97,6 +126,7 @@ class EventDetailsViewController: UIViewController {
     
     
     @IBAction func btnJoin(_ sender: Any) {
+        
         //check if user is host
         if (appDelegate.loggedinUser.name == self.selectedEvent.host_name)
         {
@@ -109,28 +139,6 @@ class EventDetailsViewController: UIViewController {
 
             self.present(alertViewError, animated: true, completion: nil)
         }
-        
-        //check if user joined event
-        var userJoined:Bool = false
-        let ref = Database.database().reference()
-        ref.child("Joined").child(appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
-
-            for joined in snapshot.children.allObjects as! [DataSnapshot] {
-
-                let dict = joined.value as! [String: AnyObject]
-
-                let eventID = dict["id"] as! String
-
-                if(eventID == self.selectedEvent.id)
-                {
-                    userJoined = true
-                }
-
-                self.userJoinedEvent = userJoined
-
-            }
-
-        })
         
         //check for attendees limit
         if (self.selectedEvent.num_attendees < self.selectedEvent.pax && self.userJoinedEvent == false)
@@ -161,13 +169,11 @@ class EventDetailsViewController: UIViewController {
                 let childUpdatesEvent = ["Event/\(selectedEvent.id)/": postEvent]
                 ref.updateChildValues(childUpdatesEvent)
                 
-                // update UserJoined events id
+                // update User Joined events id
                 let postJoined = ["id": selectedEvent.id, "name": selectedEvent.name] as [String : Any]
                 let childUpdatesJoined = ["Joined/\(appDelegate.loggedinUser.name)/\(selectedEvent.id)": postJoined]
                 ref.updateChildValues(childUpdatesJoined)
-                                        
-                self.userJoinedEvent = true
-                
+                                                        
                 let alertViewConfirm = UIAlertController(
                     title: "Event Joined",
                     message: "You have joined this event",
@@ -188,7 +194,7 @@ class EventDetailsViewController: UIViewController {
         else if (self.userJoinedEvent == true)
         {
             let alertViewJoined = UIAlertController(
-                title: "Event Joined Already",
+                title: "Event Joined",
                 message: "You have joined this event already.",
                 preferredStyle: UIAlertController.Style.alert)
 
