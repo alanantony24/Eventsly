@@ -55,8 +55,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func backBtn(_ sender: Any) {
-        //takes back to rootviewcontroller
-        _ = navigationController?.popToRootViewController(animated: true)
+        //takes back to signUp page
+        if true{
+            let storyboard = UIStoryboard(name: Constants.Storyboard.firstStoryBoard, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.signUpPage) as UIViewController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

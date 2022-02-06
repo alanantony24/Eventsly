@@ -115,7 +115,12 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
     }
     
     @IBAction func backBtn(_ sender: Any) {
-        _ = navigationController?.popToRootViewController(animated: true)
+        if true{
+            let storyboard = UIStoryboard(name: Constants.Storyboard.firstStoryBoard, bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginPage) as UIViewController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     func ShowError(_ message:String){
         errorMsgLabel.text = message
