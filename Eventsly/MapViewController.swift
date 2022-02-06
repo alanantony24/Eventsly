@@ -16,18 +16,7 @@ class MapViewController:UIViewController, MKMapViewDelegate{
     
     private let database = Database.database().reference()
     
-    let regionRadius:CLLocationDistance = 1000
-    
-    var locationAndEventDict:[String:String] = [:]
-    
-    func centerMapOnLocation(location:CLLocation){
-        let coordinateRegion = MKCoordinateRegion(
-            center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius
-        )
-        map.setRegion(coordinateRegion, animated: true)
-    }
-    
-    let annotation = MKPointAnnotation()
+    let regionRadius:CLLocationDistance = 4000
     
     let locationDelegate = LocationDelegate()
     
@@ -42,7 +31,30 @@ class MapViewController:UIViewController, MKMapViewDelegate{
     }(CLLocationManager())
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        database.child("Event").observe(.value, with: { (snapshot) in
+            
+            var locationList:[String] = []
+            
+            for event in snapshot.children.allObjects as! [DataSnapshot] {
+                 
+                if (event.hasChildren())
+                {
+                    let dict = event.value as! [String: AnyObject]
+
+                    let eventName = dict["name"] as! String
+                    let address = dict["address"] as! String
+                    let id = dict["id"] as! String
+
+                    self.GeoCoder(address: address, eventName: eventName, id: id)
+                    locationList.append(address)
+                }
+            }
+            
+            print("LocationList :  \(locationList.count)")
+        })
         
         locationManager.delegate = locationDelegate
         locationDelegate.locationCallback = { location in
@@ -78,49 +90,30 @@ class MapViewController:UIViewController, MKMapViewDelegate{
 //                self.GeoCoder(locEventDict: self.locationAndEventDict)
 //            }
 //        })
-        
-        database.child("Event").observe(.value, with: { (snapshot) in
-            
-            for event in snapshot.children.allObjects as! [DataSnapshot] {
-                 
-                if (event.hasChildren())
-                {
-                    let dict = event.value as! [String: AnyObject]
-
-                    let eventName = dict["name"] as! String
-                    let address = dict["address"] as! String
-
-                    self.locationAndEventDict[eventName] = address
-                    
-                }
-                
-            }
-            
-            self.GeoCoder(locEventDict: self.locationAndEventDict)
-        })
-        
     }
     
-    func GeoCoder(locEventDict:[String:String]){
+    func GeoCoder(address:String, eventName:String, id:String){
         
         let geoCoder = CLGeocoder()
         
-        var annotationList:[MKAnnotation] = []
-        for (key, value) in locEventDict{
-            geoCoder.geocodeAddressString(value) { p, e in
-                
-                if (p != nil)
-                {
-                    let locationPin:CLLocation = CLLocation(latitude:p![0].location!.coordinate.latitude, longitude: p![0].location!.coordinate.longitude)
-                   
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = locationPin.coordinate
-                    annotation.title = key
-                    annotationList.append(annotation)
-                    print(annotationList.count)
-                    self.map.addAnnotations(annotationList)
-                }
+        geoCoder.geocodeAddressString(address) { p, e in
+            if (p != nil)
+            {
+                let annotation = MKPointAnnotation()
+                annotation.coordinate.latitude = p![0].location!.coordinate.latitude
+                annotation.coordinate.longitude = p![0].location!.coordinate.longitude
+                annotation.title = eventName
+                annotation.subtitle = id
+                self.map.addAnnotation(annotation)
             }
         }
+    
+    }
+    
+    func centerMapOnLocation(location:CLLocation){
+        let coordinateRegion = MKCoordinateRegion(
+            center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius
+        )
+        map.setRegion(coordinateRegion, animated: true)
     }
 }

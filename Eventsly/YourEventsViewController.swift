@@ -86,7 +86,7 @@ class YourEventsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (userEventList.count == 0)
         {
-            return "You do not have any Events hosted by you... Host an Event now!"
+            return "Host an Event now!"
         }
         else
         {
