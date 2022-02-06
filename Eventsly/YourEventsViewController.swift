@@ -74,19 +74,19 @@ class YourEventsViewController: UITableViewController {
         let event:Event = userEventList[indexPath.row]
         
         cell.textLabel!.text = "\(event.name)"
-        cell.detailTextLabel!.text = "ID: \(event.id)"
+        cell.detailTextLabel!.text = "Type: \(event.type)"
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        appDelegate.selectedGoingEvent = indexPath.row
+        appDelegate.selectedYourEvent = indexPath.row
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (userEventList.count == 0)
         {
-            return "You do not have any Events hosted by you... Host an Event now!"
+            return "Host an Event now!"
         }
         else
         {

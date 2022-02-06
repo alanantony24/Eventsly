@@ -46,25 +46,53 @@ class YourEventDetailsViewController: UIViewController {
             
             for event in snapshot.children.allObjects as! [DataSnapshot] {
                  
-                let dict = event.value as! [String: AnyObject]
+                if (event.hasChildren())
+                {
+                    let dict = event.value as! [String: AnyObject]
 
-                let id = dict["id"] as! String
-                let name = dict["name"] as! String
-                let type = dict["type"] as! String
-                let desc = dict["desc"] as! String
-                let pax = dict["pax"] as! String
-                let date = dict["date"] as! String
-                let time = dict["time"] as! String
-                let address = dict["address"] as! String
-                let host_name = dict["host_name"] as! String
-                let num_attendees = dict["num_attendees"] as! String
+                    let host_name = dict["host_name"] as! String
+                    if (host_name == self.appDelegate.loggedinUser.name)
+                    {
+                        let id = dict["id"] as! String
+                        let name = dict["name"] as! String
+                        let type = dict["type"] as! String
+                        let desc = dict["desc"] as! String
+                        let pax = dict["pax"] as! String
+                        let date = dict["date"] as! String
+                        let time = dict["time"] as! String
+                        let address = dict["address"] as! String
+                        let num_attendees = dict["num_attendees"] as! String
 
-                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
-
-                eventList.append(newEvent)
+                        let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
+                        
+                        eventList.append(newEvent)
+                    }
+                    
+                }
+                
             }
             
-            self.selectedEvent = eventList[self.appDelegate.selectedEvent]
+//            for event in snapshot.children.allObjects as! [DataSnapshot] {
+//
+//                let dict = event.value as! [String: AnyObject]
+//
+//                let id = dict["id"] as! String
+//                let name = dict["name"] as! String
+//                let type = dict["type"] as! String
+//                let desc = dict["desc"] as! String
+//                let pax = dict["pax"] as! String
+//                let date = dict["date"] as! String
+//                let time = dict["time"] as! String
+//                let address = dict["address"] as! String
+//                let host_name = dict["host_name"] as! String
+//                let num_attendees = dict["num_attendees"] as! String
+//
+//                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
+//
+//                eventList.append(newEvent)
+//            }
+            
+            self.selectedEvent = eventList[self.appDelegate.selectedYourEvent]
             
             self.lblName.text = "\(self.selectedEvent.name)"
             self.lblDate.text = "Date & Time: \(self.selectedEvent.date), \(self.selectedEvent.time)"

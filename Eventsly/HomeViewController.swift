@@ -30,9 +30,10 @@ class HomeViewController: UIViewController {
                         let data = document.data()
                         let name = data["name"] as? String ?? ""
                         let username = data["username"] as? String ?? ""
-                        let phone = data["phNo"] as? Int32 ?? 0
+                        let phone = data["phNo"] as? String ?? ""
+                        let email = data["email"] as? String ?? ""
                         
-                        let loggedinUser:User = User(name: name, username: username, password: "", email: "", phone: phone)
+                        let loggedinUser:User = User(name: name, username: username, password: "", email: email, phone: Int32(phone) ?? 0)
                         self.appDelegate.loggedinUser = loggedinUser
                         
                         self.lblWelcome.text = "Welcome, \(name)!"

@@ -19,30 +19,60 @@ class GoingViewController: UITableViewController {
         super.viewDidLoad()
         
         let ref = Database.database().reference()
-        ref.child("Joined").child(appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
-            
-            var goingEventList:[Event] = []
-            
-            for joined in snapshot.children.allObjects as! [DataSnapshot] {
-                 
-                let dict = joined.value as! [String: AnyObject]
+        
+        if (appDelegate.loggedinUser.name != "")
+        {
+            ref.child("Joined").child(appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
+                
+                var goingEventList:[Event] = []
+                
+                for joined in snapshot.children.allObjects as! [DataSnapshot] {
+                     
+                    let dict = joined.value as! [String: AnyObject]
 
-                let eventID = dict["id"] as! String
-                let eventName = dict["name"] as! String
+                    let eventID = dict["id"] as! String
+                    let eventName = dict["name"] as! String
+                    
+                    let goingEvent:Event = Event(id: eventID, name: eventName, type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
+                    
+                    goingEventList.append(goingEvent)
+                }
                 
-                let goingEvent:Event = Event(id: eventID, name: eventName, type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
+                self.goingEventList = goingEventList
+                self.tableView.reloadData()
                 
-                goingEventList.append(goingEvent)
-            }
-            
-            self.goingEventList = goingEventList
-            self.tableView.reloadData()
-            
-        })
+            })
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        let ref = Database.database().reference()
+
+        if (appDelegate.loggedinUser.name != "")
+        {
+            ref.child("Joined").child(appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
+                
+                var goingEventList:[Event] = []
+                
+                for joined in snapshot.children.allObjects as! [DataSnapshot] {
+                     
+                    let dict = joined.value as! [String: AnyObject]
+
+                    let eventID = dict["id"] as! String
+                    let eventName = dict["name"] as! String
+                    
+                    let goingEvent:Event = Event(id: eventID, name: eventName, type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
+                    
+                    goingEventList.append(goingEvent)
+                }
+                
+                self.goingEventList = goingEventList
+                self.tableView.reloadData()
+                
+            })
+        }
+
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -59,7 +89,6 @@ class GoingViewController: UITableViewController {
         let event:Event = goingEventList[indexPath.row]
         
         cell.textLabel!.text = "\(event.name)"
-        cell.detailTextLabel!.text = "ID: \(event.id)"
         
         return cell
     }

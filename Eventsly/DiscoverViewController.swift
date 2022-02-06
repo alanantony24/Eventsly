@@ -70,7 +70,7 @@ class DiscoverViewController: UITableViewController {
         
         let event:Event = eventList[indexPath.row]
         
-        cell.textLabel!.text = "\(event.id): \(event.name)"
+        cell.textLabel!.text = "\(event.name)"
         cell.detailTextLabel!.text = "Type: \(event.type)"
         
         return cell
