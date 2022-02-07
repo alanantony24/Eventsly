@@ -15,7 +15,6 @@
 		0E02AED12792EE7900764DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E02AED02792EE7900764DA6 /* Assets.xcassets */; };
 		0E02AED42792EE7900764DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E02AED22792EE7900764DA6 /* LaunchScreen.storyboard */; };
 		0E4245D627A9736F00BA9A53 /* loginsignup.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E4245D527A9736F00BA9A53 /* loginsignup.json */; };
-		0E4245D827A9821D00BA9A53 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E4245D727A9821D00BA9A53 /* done.json */; };
 		0E6CF7EE27ABA1D900B1D466 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */; };
 		0E87E18C27A2B18E007E31F7 /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87E18B27A2B18E007E31F7 /* LocationDelegate.swift */; };
 		0E87E18E27A2B1A4007E31F7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87E18D27A2B1A4007E31F7 /* MapViewController.swift */; };
@@ -51,7 +50,6 @@
 		0E02AED32792EE7900764DA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E02AED52792EE7900764DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E4245D527A9736F00BA9A53 /* loginsignup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loginsignup.json; sourceTree = "<group>"; };
-		0E4245D727A9821D00BA9A53 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
 		0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		0E87E18B27A2B18E007E31F7 /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
 		0E87E18D27A2B1A4007E31F7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				0E4245D527A9736F00BA9A53 /* loginsignup.json */,
-				0E4245D727A9821D00BA9A53 /* done.json */,
 				0EE385E5279D05F100AEEC1D /* GoogleService-Info.plist */,
 				0E02AEC42792EE7700764DA6 /* AppDelegate.swift */,
 				0E02AEC62792EE7700764DA6 /* SceneDelegate.swift */,
@@ -226,7 +223,6 @@
 				0E02AED42792EE7900764DA6 /* LaunchScreen.storyboard in Resources */,
 				0E02AED12792EE7900764DA6 /* Assets.xcassets in Resources */,
 				0EE385E6279D05F100AEEC1D /* GoogleService-Info.plist in Resources */,
-				0E4245D827A9821D00BA9A53 /* done.json in Resources */,
 				0E4245D627A9736F00BA9A53 /* loginsignup.json in Resources */,
 				0E02AECC2792EE7700764DA6 /* Main.storyboard in Resources */,
 				0EA92B59279693D6002D9CED /* Home.storyboard in Resources */,

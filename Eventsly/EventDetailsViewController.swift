@@ -29,6 +29,7 @@ class EventDetailsViewController: UIViewController {
     @IBOutlet weak var lblHost: UILabel!
     @IBOutlet weak var lblAttendees: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
+    @IBOutlet weak var joinBtn: UIButton!
     
     func centerMapOnLocation(location: CLLocation){
         let coordinateRegion = MKCoordinateRegion (
@@ -87,6 +88,11 @@ class EventDetailsViewController: UIViewController {
 
                     if(eventID == self.selectedEvent.id)
                     {
+                        //Change colour and text of Join Button
+                        self.joinBtn.setTitle("Joined", for: .normal)
+                        self.joinBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+                        self.joinBtn.isEnabled = false
+                        
                         let alertViewJoined = UIAlertController(
                             title: "Event Joined",
                             message: "You have joined this event already.",
