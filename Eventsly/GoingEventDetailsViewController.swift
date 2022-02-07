@@ -73,6 +73,7 @@ class GoingEventDetailsViewController: UIViewController {
                 
                 let goingEventDetail:Event = Event(id: selectedEventID, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, datetime: datetime, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
                 
+                //formatter to format the display date
                 let formatter = DateFormatter()
                 formatter.locale = Locale(identifier: "en_US_POSIX")
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

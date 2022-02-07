@@ -76,6 +76,7 @@ class YourEventDetailsViewController: UIViewController {
             // set event id to appDelegate to view attendees
             self.appDelegate.selectedYourEventID = self.selectedEvent.id
             
+            //formatter to format the display date in the label.
             let formatter = DateFormatter()
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
