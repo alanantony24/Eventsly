@@ -74,6 +74,9 @@ class YourEventDetailsViewController: UIViewController {
             // data of selected event hosted by user from Your Events page
             self.selectedEvent = eventList[self.appDelegate.selectedYourEvent]
             
+            // set event id to appDelegate to view attendees
+            self.appDelegate.selectedYourEventID = self.selectedEvent.id
+            
             // insert details of event to view
             self.lblName.text = "\(self.selectedEvent.name)"
             self.lblDate.text = "Date & Time: \(self.selectedEvent.date), \(self.selectedEvent.time)"

@@ -29,6 +29,7 @@
 		AD75F051279FDBA6009ACBE0 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD75F050279FDBA6009ACBE0 /* HostViewController.swift */; };
 		C6B62013E8B3E54F30E9203B /* Pods_Eventsly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955E37B24707DB4A6D1490C /* Pods_Eventsly.framework */; };
 		CE51381427AFB5C600475CFF /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51381327AFB5C600475CFF /* UserProfileViewController.swift */; };
+		CE51381627B0F88100475CFF /* AttendeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51381527B0F88100475CFF /* AttendeesViewController.swift */; };
 		CE9D2D7F27ABA56100AF74E5 /* YourEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D2D7E27ABA56100AF74E5 /* YourEventsViewController.swift */; };
 		CE9D2D8127ABA8E600AF74E5 /* YourEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D2D8027ABA8E600AF74E5 /* YourEventDetailsViewController.swift */; };
 		CEA4A4A627995A5200B9C224 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A527995A5200B9C224 /* Event.swift */; };
@@ -66,6 +67,7 @@
 		999D1B241532ABE62AC45CA7 /* Pods-Eventsly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventsly.debug.xcconfig"; path = "Target Support Files/Pods-Eventsly/Pods-Eventsly.debug.xcconfig"; sourceTree = "<group>"; };
 		AD75F050279FDBA6009ACBE0 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
 		CE51381327AFB5C600475CFF /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		CE51381527B0F88100475CFF /* AttendeesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesViewController.swift; sourceTree = "<group>"; };
 		CE9D2D7E27ABA56100AF74E5 /* YourEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourEventsViewController.swift; sourceTree = "<group>"; };
 		CE9D2D8027ABA8E600AF74E5 /* YourEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourEventDetailsViewController.swift; sourceTree = "<group>"; };
 		CEA4A4A527995A5200B9C224 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				CEF7B64D27A9425C00B32765 /* GoingEventDetailsViewController.swift */,
 				CE9D2D7E27ABA56100AF74E5 /* YourEventsViewController.swift */,
 				CE9D2D8027ABA8E600AF74E5 /* YourEventDetailsViewController.swift */,
+				CE51381527B0F88100475CFF /* AttendeesViewController.swift */,
 				0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */,
 			);
 			path = Eventsly;
@@ -290,6 +293,7 @@
 				0E02AEC92792EE7700764DA6 /* ViewController.swift in Sources */,
 				0E02AEC52792EE7700764DA6 /* AppDelegate.swift in Sources */,
 				0EE385E4279D020F00AEEC1D /* Utilities.swift in Sources */,
+				CE51381627B0F88100475CFF /* AttendeesViewController.swift in Sources */,
 				0EE385E8279D1F0D00AEEC1D /* Constants.swift in Sources */,
 				CEF7B64A27A8F0F400B32765 /* EventDetailsViewController.swift in Sources */,
 				0EE59407279A6A9600A7AA3C /* SignUpAndLoginController.swift in Sources */,
@@ -450,7 +454,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6XLK592LM2;
+				DEVELOPMENT_TEAM = FB2ZN47X37;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Eventsly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -480,7 +484,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6XLK592LM2;
+				DEVELOPMENT_TEAM = FB2ZN47X37;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Eventsly/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
