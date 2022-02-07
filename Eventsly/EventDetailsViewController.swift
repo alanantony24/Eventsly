@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class EventDetailsViewController: UIViewController {
     
-    var selectedEvent:Event = Event(id: "", name: "", type: "", desc: "", pax: 0, date: "", time: "", address: "", host_name: "", num_attendees: 0)
+    var selectedEvent:Event = Event(id: "", name: "", type: "", desc: "", pax: 0, datetime: "", address: "", host_name: "", num_attendees: 0)
     var userJoinedEvent:Bool = false
     let ref = Database.database().reference()
     
@@ -24,7 +24,7 @@ class EventDetailsViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblDateTime: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
     @IBOutlet weak var lblHost: UILabel!
     @IBOutlet weak var lblAttendees: UILabel!
@@ -55,13 +55,13 @@ class EventDetailsViewController: UIViewController {
                 let type = dict["type"] as! String
                 let desc = dict["desc"] as! String
                 let pax = dict["pax"] as! String
-                let date = dict["date"] as! String
-                let time = dict["time"] as! String
+                let datetime = dict["datetime"] as! String
+                //let time = dict["time"] as! String
                 let address = dict["address"] as! String
                 let host_name = dict["host_name"] as! String
                 let num_attendees = dict["num_attendees"] as! String
 
-                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
+                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, datetime: datetime, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
 
                 eventList.append(newEvent)
             }
@@ -69,7 +69,7 @@ class EventDetailsViewController: UIViewController {
             self.selectedEvent = eventList[self.appDelegate.selectedEvent]
             
             self.lblName.text = "\(self.selectedEvent.name)"
-            self.lblDate.text = "Date & Time: \(self.selectedEvent.date), \(self.selectedEvent.time)"
+            self.lblDateTime.text = "Date & Time: \(self.selectedEvent.datetime)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
             self.lblHost.text = "Host: \(self.selectedEvent.host_name)"
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"
@@ -153,8 +153,8 @@ class EventDetailsViewController: UIViewController {
                                  "type": selectedEvent.type,
                                  "desc": selectedEvent.desc,
                                  "pax": String(selectedEvent.pax),
-                                 "date": selectedEvent.date,
-                                 "time": selectedEvent.time,
+                                 "datetime": selectedEvent.datetime,
+                                 //"time": selectedEvent.time,
                                  "address": selectedEvent.address,
                                  "host_name": selectedEvent.host_name,
                                  "num_attendees": String(selectedEvent.num_attendees)] as [String : Any]

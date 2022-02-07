@@ -17,11 +17,16 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     
     @IBOutlet weak var descriptionInput: UITextField!
     @IBOutlet weak var numofPaxInput: UITextField!
-    @IBOutlet weak var dateInput: UITextField!
-    @IBOutlet weak var timeInput: UITextField!
+    //@IBOutlet weak var dateInput: UITextField!
+    //@IBOutlet weak var timeInput: UITextField!
+    @IBOutlet weak var datetimeInput: UITextField!
     @IBOutlet weak var locationInput: UITextField!
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var categoryInput: UITextField!
+    
+    
+    // DatePicker
+    let datepicker = UIDatePicker()
     
     
     override func viewDidLoad() {
@@ -31,16 +36,41 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
         descriptionInput.clearButtonMode = .whileEditing
         numofPaxInput.delegate = self
         numofPaxInput.clearButtonMode = .whileEditing
-        dateInput.delegate = self
-        dateInput.clearButtonMode = .whileEditing
-        timeInput.delegate = self
-        timeInput.clearButtonMode = .whileEditing
+        //dateInput.delegate = self
+        //dateInput.clearButtonMode = .whileEditing
+        //timeInput.delegate = self
+        //timeInput.clearButtonMode - .whileEditing
+        createDatePicker()
         locationInput.delegate = self
         locationInput.clearButtonMode = .whileEditing
         nameInput.delegate = self
         nameInput.clearButtonMode = .whileEditing
         categoryInput.delegate = self
         categoryInput.clearButtonMode = .whileEditing
+    }
+    
+    func createDatePicker() {
+        if #available(iOS 13.4, *)  {
+        datepicker.preferredDatePickerStyle = .wheels
+                }
+        // toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        // bar button
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        toolbar.setItems([doneBtn], animated: true)
+        
+        // assign toobar
+        datetimeInput.inputAccessoryView = toolbar
+        
+        // assign date picker to the text field
+        datetimeInput.inputView = datepicker
+    }
+    
+    @objc func donePressed() {
+        datetimeInput.text = "\(datepicker.date)"
+        self.view.endEditing(true)
     }
     
     @IBAction func cancelBtn(_ sender: Any) {
@@ -52,8 +82,9 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
         categoryInput.text = ""
         descriptionInput.text = ""
         numofPaxInput.text = ""
-        dateInput.text = ""
-        timeInput.text = ""
+        //dateInput.text = ""
+        //timeInput.text = ""
+        datetimeInput.text = ""
         locationInput.text = ""
     }
     
@@ -90,22 +121,22 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
             }))
             present(alert, animated: true, completion: nil)
         }
-        else if (dateInput == nil || dateInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your date for hosting", preferredStyle: .alert)
+        else if (datetimeInput == nil || datetimeInput.text == "") {
+            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your date and time for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
             }))
             present(alert, animated: true, completion: nil)
         }
-        else if (timeInput == nil || timeInput.text == "") {
+        /*else if (timeInput == nil || timeInput.text == "") {
             let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your time for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
                 return
             }))
             present(alert, animated: true, completion: nil)
-        }
+        }*/
         else if (locationInput == nil || locationInput.text == "") {
             let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your location for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
@@ -158,8 +189,9 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
                                     "type": self.categoryInput.text!,
                                     "desc": self.descriptionInput.text!,
                                     "pax": self.numofPaxInput.text!,
-                                    "date": self.dateInput.text!,
-                                    "time": self.timeInput.text!,
+                                    //"date": self.dateInput.text!,
+                                    //"time": self.timeInput.text!,
+                                    "date": self.datetimeInput.text!,
                                     "address": self.locationInput.text!,
                                     "host_name": self.appdelgate.loggedinUser.name,
                                     "num_attendees": "0"] as [String : Any]
@@ -177,8 +209,8 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         descriptionInput.resignFirstResponder()
         numofPaxInput.resignFirstResponder()
-        dateInput.resignFirstResponder()
-        timeInput.resignFirstResponder()
+        //dateInput.resignFirstResponder()
+        //timeInput.resignFirstResponder()
         locationInput.resignFirstResponder()
         nameInput.resignFirstResponder()
         categoryInput.resignFirstResponder()
