@@ -64,15 +64,31 @@ class EventDetailsViewController: UIViewController {
 
                 let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, datetime: datetime, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
 
-                eventList.append(newEvent)
+                let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                let date = formatter.date(from: datetime)!
+                let currentDate = Date()
+                
+                if date > currentDate{
+                    eventList.append(newEvent)
+                }
             }
             
             // get data of selected event from Discover page
             self.selectedEvent = eventList[self.appDelegate.selectedEvent]
             
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            let dateObject = formatter.date(from: self.selectedEvent.datetime)!
+            
+            formatter.dateFormat = "HH:mm E, d MMM y"
+            let displayDate:String = formatter.string(from: dateObject)
+            
             // insert event details to view
             self.lblName.text = "\(self.selectedEvent.name)"
-            self.lblDate.text = "Date & Time: \(self.selectedEvent.datetime)"
+            self.lblDate.text = "Date & Time: \(displayDate)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
             self.lblHost.text = "Host: \(self.selectedEvent.host_name)"
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"

@@ -76,9 +76,17 @@ class YourEventDetailsViewController: UIViewController {
             // set event id to appDelegate to view attendees
             self.appDelegate.selectedYourEventID = self.selectedEvent.id
             
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+            let dateObject = formatter.date(from: self.selectedEvent.datetime)!
+            
+            formatter.dateFormat = "HH:mm E, d MMM y"
+            let displayDate:String = formatter.string(from: dateObject)
+            
             // insert details of event to view
             self.lblName.text = "\(self.selectedEvent.name)"
-            self.lblDate.text = "\(self.selectedEvent.datetime)"
+            self.lblDate.text = "Date & Time: \(displayDate)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
             self.lblHost.text = "Host: \(self.selectedEvent.host_name)"
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"

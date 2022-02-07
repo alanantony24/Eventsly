@@ -24,6 +24,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var categoryInput: UITextField!
     
+    var addDateToFireBase:String = ""
     
     // DatePicker
     let datepicker = UIDatePicker()
@@ -73,7 +74,11 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     @objc func donePressed() {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm E, d MMM y"
-        print(formatter.string(from: datepicker.date))
+        
+        let formatterToAddDate = DateFormatter()
+        formatterToAddDate.locale = Locale(identifier: "en_US_POISX")
+        formatterToAddDate.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        addDateToFireBase = formatterToAddDate.string(from: datepicker.date)
         
         //Formats the date upon the user hitting the done button.
         var inputDate:String = formatter.string(from: datepicker.date)
@@ -194,7 +199,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
                                     "type": self.categoryInput.text!,
                                     "desc": self.descriptionInput.text!,
                                     "pax": self.numofPaxInput.text!,
-                                    "date": self.dateInput.text!,
+                                    "date": self.addDateToFireBase,
                                     "address": self.locationInput.text!,
                                     "host_name": self.appdelgate.loggedinUser.name,
                                     "num_attendees": "0"] as [String : Any]

@@ -73,9 +73,17 @@ class GoingEventDetailsViewController: UIViewController {
                 
                 let goingEventDetail:Event = Event(id: selectedEventID, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, datetime: datetime, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
                 
+                let formatter = DateFormatter()
+                formatter.locale = Locale(identifier: "en_US_POSIX")
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                let dateObject = formatter.date(from: goingEventDetail.datetime)!
+                
+                formatter.dateFormat = "HH:mm E, d MMM y"
+                let displayDate:String = formatter.string(from: dateObject)
+                
                 // insert details of event to view
                 self.lblName.text = "\(goingEventDetail.name)"
-                self.lblDate.text = "\(goingEventDetail.datetime)"
+                self.lblDate.text = "Date & Time: \(displayDate)"
                 self.lblDesc.text = "\(goingEventDetail.desc)"
                 self.lblHost.text = "Host: \(goingEventDetail.host_name)"
                 self.lblAttendees.text = "Attendees: \(goingEventDetail.num_attendees)/\(goingEventDetail.pax)"
