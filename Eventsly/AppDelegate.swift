@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Eventsly
 //
-//  Created by MAD2 on 15/1/22.
+//  Created by Alan Antony on 15/1/22.
 //
 
 import UIKit

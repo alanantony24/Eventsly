@@ -2,8 +2,8 @@
 //  SignUpViewController.swift
 //  Eventsly
 //
-//  Created by MAD2 on 18/1/22.
-//
+//  Created by Alan Antony on 18/1/22.
+//  This class is to Sign Up the user with email and password using FireBase Authentication, and add the other data to the FireBase FireStore Database.
 
 import Foundation
 import UIKit
@@ -13,6 +13,7 @@ import FirebaseFirestore
 
 class SignUpViewController:UIViewController,UITextFieldDelegate{
     
+    //Initialize the UI Elements such as textfiels and lables.
     @IBOutlet weak var nameFld: UITextField!
     @IBOutlet weak var userNameFld: UITextField!
     @IBOutlet weak var emailFld: UITextField!
@@ -21,12 +22,12 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
     @IBOutlet weak var phoneNo: UITextField!
     @IBOutlet weak var errorMsgLabel: UILabel!
     
-    let signUpController = SignUpAndLoginController()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         SetupElements()
         
+        //This code is to give a cross button in the textfield to delete the input if the user wants to.
         nameFld.delegate = self
         nameFld.clearButtonMode = .whileEditing
         userNameFld.delegate = self
@@ -41,6 +42,7 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
         phoneNo.clearButtonMode = .whileEditing
     }
     
+    //This function is called so that the error msg label will be invisible unless there's an error.
     func SetupElements(){
         errorMsgLabel.alpha = 0
     }
@@ -62,7 +64,7 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
         let cleanedPassword = pwdFld.text!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
         let cleanedCfmPassword = cfmPwdFld.text!.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
         
-        //Check if password is strong (REGEX)
+        //Check if password is strong and follows the rule of at least 8 characters including a number and a special character.(REGEX)
         if Utilities.isPasswordValid(cleanedPassword) == false || Utilities.isPasswordValid(cleanedCfmPassword) == false{
             return "Please make sure your password is at least 8 characters, contains a special character and a number."
         }
@@ -75,6 +77,7 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
         return nil
     }
     
+    //When the Sign Up button is clicked, the below code kicks in.
     @IBAction func signUpBtn(_ sender: Any) {
         
         //Validating the text fields
@@ -85,23 +88,23 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
             ShowError(error!)
         }
         else{
-            //Create the final cleansed data
+            //Create the final cleansed data.
             let name = nameFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let userName = userNameFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = pwdFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let cfmPwd = cfmPwdFld.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let phNo = phoneNo.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            //Create the users
+            
+            //Create the users using FireBase Authentication.
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                
                 //Error Checking
                 if err != nil{
                     self.ShowError("Error creating user")
                 }
                 else{
+                    //Adding the other user data to the FireStore Database.
                     let db = Firestore.firestore()
-                    
                     db.collection("users").document(name).setData(["name":name, "username":userName, "email":email, "phNo":phNo, "uid": result!.user.uid]) { (error) in
                         if error != nil{
                             self.ShowError("User could not be created : (")
@@ -114,7 +117,9 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
         }
     }
     
+    //Once the Login Instead Button is clicked, the below code kicks in.
     @IBAction func backBtn(_ sender: Any) {
+        //Takes the user back to the login page if the user is already Signed Up.
         if true{
             let storyboard = UIStoryboard(name: Constants.Storyboard.firstStoryBoard, bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginPage) as UIViewController
@@ -122,11 +127,15 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
             self.present(vc, animated: true, completion: nil)
         }
     }
+    
+    //If there's any error message, then the error msg label is made visible and the text is set
+    //to the error description.
     func ShowError(_ message:String){
         errorMsgLabel.text = message
         errorMsgLabel.alpha = 1
     }
     
+    //Once the user is successfuly signed in, the user is taken to the home page of the application.
     func TransitionToHome(){
         if true{
             let storyboard = UIStoryboard(name: Constants.Storyboard.homeStoryBoard, bundle: nil)
@@ -136,6 +145,7 @@ class SignUpViewController:UIViewController,UITextFieldDelegate{
         }
     }
     
+    //This code is to add a return button in the Phone/Simulator keyboard. Once the return button is hit, the keyboard goes back and the user can select the next field.
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         nameFld.resignFirstResponder()
         userNameFld.resignFirstResponder()
