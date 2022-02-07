@@ -15,7 +15,6 @@
 		0E02AED12792EE7900764DA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E02AED02792EE7900764DA6 /* Assets.xcassets */; };
 		0E02AED42792EE7900764DA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E02AED22792EE7900764DA6 /* LaunchScreen.storyboard */; };
 		0E4245D627A9736F00BA9A53 /* loginsignup.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E4245D527A9736F00BA9A53 /* loginsignup.json */; };
-		0E4245D827A9821D00BA9A53 /* done.json in Resources */ = {isa = PBXBuildFile; fileRef = 0E4245D727A9821D00BA9A53 /* done.json */; };
 		0E6CF7EE27ABA1D900B1D466 /* UpdateProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */; };
 		0E87E18C27A2B18E007E31F7 /* LocationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87E18B27A2B18E007E31F7 /* LocationDelegate.swift */; };
 		0E87E18E27A2B1A4007E31F7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87E18D27A2B1A4007E31F7 /* MapViewController.swift */; };
@@ -29,9 +28,10 @@
 		0EE59407279A6A9600A7AA3C /* SignUpAndLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE59406279A6A9600A7AA3C /* SignUpAndLoginController.swift */; };
 		AD75F051279FDBA6009ACBE0 /* HostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD75F050279FDBA6009ACBE0 /* HostViewController.swift */; };
 		C6B62013E8B3E54F30E9203B /* Pods_Eventsly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4955E37B24707DB4A6D1490C /* Pods_Eventsly.framework */; };
+		CE51381427AFB5C600475CFF /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51381327AFB5C600475CFF /* UserProfileViewController.swift */; };
+		CE51381627B0F88100475CFF /* AttendeesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE51381527B0F88100475CFF /* AttendeesViewController.swift */; };
 		CE9D2D7F27ABA56100AF74E5 /* YourEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D2D7E27ABA56100AF74E5 /* YourEventsViewController.swift */; };
 		CE9D2D8127ABA8E600AF74E5 /* YourEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9D2D8027ABA8E600AF74E5 /* YourEventDetailsViewController.swift */; };
-		CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */; };
 		CEA4A4A627995A5200B9C224 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A527995A5200B9C224 /* Event.swift */; };
 		CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA4A4A927995E2E00B9C224 /* User.swift */; };
 		CEF7B64627A8D4B200B32765 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF7B64527A8D4B200B32765 /* DiscoverViewController.swift */; };
@@ -51,7 +51,6 @@
 		0E02AED32792EE7900764DA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E02AED52792EE7900764DA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E4245D527A9736F00BA9A53 /* loginsignup.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loginsignup.json; sourceTree = "<group>"; };
-		0E4245D727A9821D00BA9A53 /* done.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = done.json; sourceTree = "<group>"; };
 		0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileViewController.swift; sourceTree = "<group>"; };
 		0E87E18B27A2B18E007E31F7 /* LocationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDelegate.swift; sourceTree = "<group>"; };
 		0E87E18D27A2B1A4007E31F7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -67,9 +66,10 @@
 		4955E37B24707DB4A6D1490C /* Pods_Eventsly.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eventsly.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		999D1B241532ABE62AC45CA7 /* Pods-Eventsly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eventsly.debug.xcconfig"; path = "Target Support Files/Pods-Eventsly/Pods-Eventsly.debug.xcconfig"; sourceTree = "<group>"; };
 		AD75F050279FDBA6009ACBE0 /* HostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostViewController.swift; sourceTree = "<group>"; };
+		CE51381327AFB5C600475CFF /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		CE51381527B0F88100475CFF /* AttendeesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeesViewController.swift; sourceTree = "<group>"; };
 		CE9D2D7E27ABA56100AF74E5 /* YourEventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourEventsViewController.swift; sourceTree = "<group>"; };
 		CE9D2D8027ABA8E600AF74E5 /* YourEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourEventDetailsViewController.swift; sourceTree = "<group>"; };
-		CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CEA4A4A527995A5200B9C224 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		CEA4A4A927995E2E00B9C224 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CEF7B64527A8D4B200B32765 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +112,6 @@
 			isa = PBXGroup;
 			children = (
 				0E4245D527A9736F00BA9A53 /* loginsignup.json */,
-				0E4245D727A9821D00BA9A53 /* done.json */,
 				0EE385E5279D05F100AEEC1D /* GoogleService-Info.plist */,
 				0E02AEC42792EE7700764DA6 /* AppDelegate.swift */,
 				0E02AEC62792EE7700764DA6 /* SceneDelegate.swift */,
@@ -126,7 +125,7 @@
 				0EA92B5C2796940D002D9CED /* LoginViewController.swift */,
 				0EA92B5E27969446002D9CED /* SignUpViewController.swift */,
 				0EA92B5A279693E8002D9CED /* HomeViewController.swift */,
-				CEA4A4A32799559B00B9C224 /* ProfileViewController.swift */,
+				CE51381327AFB5C600475CFF /* UserProfileViewController.swift */,
 				CEA4A4A527995A5200B9C224 /* Event.swift */,
 				CEA4A4A927995E2E00B9C224 /* User.swift */,
 				0EE59406279A6A9600A7AA3C /* SignUpAndLoginController.swift */,
@@ -141,6 +140,7 @@
 				CEF7B64D27A9425C00B32765 /* GoingEventDetailsViewController.swift */,
 				CE9D2D7E27ABA56100AF74E5 /* YourEventsViewController.swift */,
 				CE9D2D8027ABA8E600AF74E5 /* YourEventDetailsViewController.swift */,
+				CE51381527B0F88100475CFF /* AttendeesViewController.swift */,
 				0E6CF7ED27ABA1D900B1D466 /* UpdateProfileViewController.swift */,
 			);
 			path = Eventsly;
@@ -226,7 +226,6 @@
 				0E02AED42792EE7900764DA6 /* LaunchScreen.storyboard in Resources */,
 				0E02AED12792EE7900764DA6 /* Assets.xcassets in Resources */,
 				0EE385E6279D05F100AEEC1D /* GoogleService-Info.plist in Resources */,
-				0E4245D827A9821D00BA9A53 /* done.json in Resources */,
 				0E4245D627A9736F00BA9A53 /* loginsignup.json in Resources */,
 				0E02AECC2792EE7700764DA6 /* Main.storyboard in Resources */,
 				0EA92B59279693D6002D9CED /* Home.storyboard in Resources */,
@@ -283,6 +282,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EA92B5D2796940D002D9CED /* LoginViewController.swift in Sources */,
+				CE51381427AFB5C600475CFF /* UserProfileViewController.swift in Sources */,
 				CEA4A4A627995A5200B9C224 /* Event.swift in Sources */,
 				AD75F051279FDBA6009ACBE0 /* HostViewController.swift in Sources */,
 				CEF7B64E27A9425C00B32765 /* GoingEventDetailsViewController.swift in Sources */,
@@ -293,6 +293,7 @@
 				0E02AEC92792EE7700764DA6 /* ViewController.swift in Sources */,
 				0E02AEC52792EE7700764DA6 /* AppDelegate.swift in Sources */,
 				0EE385E4279D020F00AEEC1D /* Utilities.swift in Sources */,
+				CE51381627B0F88100475CFF /* AttendeesViewController.swift in Sources */,
 				0EE385E8279D1F0D00AEEC1D /* Constants.swift in Sources */,
 				CEF7B64A27A8F0F400B32765 /* EventDetailsViewController.swift in Sources */,
 				0EE59407279A6A9600A7AA3C /* SignUpAndLoginController.swift in Sources */,
@@ -300,7 +301,6 @@
 				0E02AEC72792EE7700764DA6 /* SceneDelegate.swift in Sources */,
 				CEF7B64C27A931AF00B32765 /* GoingViewController.swift in Sources */,
 				CE9D2D7F27ABA56100AF74E5 /* YourEventsViewController.swift in Sources */,
-				CEA4A4A42799559B00B9C224 /* ProfileViewController.swift in Sources */,
 				CEA4A4AA27995E2E00B9C224 /* User.swift in Sources */,
 				0E6CF7EE27ABA1D900B1D466 /* UpdateProfileViewController.swift in Sources */,
 				0E02AECF2792EE7700764DA6 /* Eventsly.xcdatamodeld in Sources */,

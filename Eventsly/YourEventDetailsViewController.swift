@@ -39,6 +39,7 @@ class YourEventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // get all events hosted by user
         let ref = Database.database().reference()
         ref.child("Event").observe(.value, with: { (snapshot) in
             
@@ -63,8 +64,13 @@ class YourEventDetailsViewController: UIViewController {
                 eventList.append(newEvent)
             }
             
-            self.selectedEvent = eventList[self.appDelegate.selectedEvent]
+            // data of selected event hosted by user from Your Events page
+            self.selectedEvent = eventList[self.appDelegate.selectedYourEvent]
             
+            // set event id to appDelegate to view attendees
+            self.appDelegate.selectedYourEventID = self.selectedEvent.id
+            
+            // insert details of event to view
             self.lblName.text = "\(self.selectedEvent.name)"
             self.lblDateTime.text = "\(self.selectedEvent.datetime)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
@@ -72,6 +78,7 @@ class YourEventDetailsViewController: UIViewController {
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"
             self.lblAddress.text = "\(self.selectedEvent.address)"
             
+            // display pin on location map
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(
                 self.selectedEvent.address,
@@ -88,7 +95,6 @@ class YourEventDetailsViewController: UIViewController {
                         self.map.addAnnotation(annotation)
                     }
                 })
-            
         })
     }
     

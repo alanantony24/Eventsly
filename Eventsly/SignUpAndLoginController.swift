@@ -2,7 +2,7 @@
 //  SignUpAndLoginController.swift
 //  Eventsly
 //
-//  Created by MAD2 on 21/1/22.
+//  Created by Alan Antony on 21/1/22.
 //
 
 import Foundation

@@ -18,6 +18,7 @@ class YourEventsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // get all events hosted by user
         let ref = Database.database().reference()
         ref.child("Event").observe(.value, with: { (snapshot) in
             
@@ -47,9 +48,7 @@ class YourEventsViewController: UITableViewController {
                         
                         eventList.append(newEvent)
                     }
-                    
                 }
-                
             }
             
             self.userEventList = eventList
@@ -69,25 +68,27 @@ class YourEventsViewController: UITableViewController {
         return userEventList.count
     }
     
+    // populate table cells with event details
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "YourEvents", for: indexPath)
                 
         let event:Event = userEventList[indexPath.row]
         
         cell.textLabel!.text = "\(event.name)"
-        cell.detailTextLabel!.text = "ID: \(event.id)"
+        cell.detailTextLabel!.text = "Type: \(event.type)"
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        appDelegate.selectedGoingEvent = indexPath.row
+        appDelegate.selectedYourEvent = indexPath.row
     }
     
+    // populate table header
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (userEventList.count == 0)
         {
-            return "You do not have any Events hosted by you... Host an Event now!"
+            return "Host an Event now!"
         }
         else
         {

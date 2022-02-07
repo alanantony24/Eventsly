@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Eventsly
 //
-//  Created by MAD2 on 15/1/22.
+//  Created by Alan Antony on 15/1/22.
 //
 
 import UIKit
@@ -12,8 +12,10 @@ import Lottie
 
 class ViewController: UIViewController {
 
+    //Initialize the FireBase Realtime Database
     private let database = Database.database().reference()
     
+    //Added an animationview for the Lottie Animation
     let animationView = AnimationView()
     
     override func viewDidLoad() {
@@ -22,6 +24,7 @@ class ViewController: UIViewController {
         setupAnimation()
         
         // Do any additional setup after loading the view.
+        //If user is already logged in, then the app will go to the home page of the application
         if FirebaseAuth.Auth.auth().currentUser != nil{
             if true{
                 let storyboard = UIStoryboard(name: Constants.Storyboard.homeStoryBoard, bundle: nil)
@@ -32,6 +35,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //This function is for adding some test data. Comment out the function in viewDidLoad accordingly.
     func AddTestData(){
         var event:[String:Any] = [
             "id": "E000007",
@@ -47,6 +51,7 @@ class ViewController: UIViewController {
         database.child("Event").childByAutoId().setValue(event)
     }
     
+    //This function us for adding the Lottie animation. The .json file is set up, then the dimensions are specified, and loop is set up to continiously loop. Finally the animation is added as a subview.
     func setupAnimation(){
         animationView.animation = Animation.named("loginsignup")
         animationView.frame = CGRect(x: 50, y: 200, width: 300, height: 300)

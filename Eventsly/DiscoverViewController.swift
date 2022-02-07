@@ -18,6 +18,7 @@ class DiscoverViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        // get all events from db
         let ref = Database.database().reference()
         ref.child("Event").observe(.value, with: { (snapshot) in
             
@@ -66,12 +67,13 @@ class DiscoverViewController: UITableViewController {
         return eventList.count
     }
     
+    // populate table cells with event details
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscoverEvent", for: indexPath)
         
         let event:Event = eventList[indexPath.row]
         
-        cell.textLabel!.text = "\(event.id): \(event.name)"
+        cell.textLabel!.text = "\(event.name)"
         cell.detailTextLabel!.text = "Type: \(event.type)"
         
         return cell
@@ -81,6 +83,7 @@ class DiscoverViewController: UITableViewController {
         appDelegate.selectedEvent = indexPath.row
     }
     
+    // populate table header
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (eventList.count == 0)
         {
