@@ -14,8 +14,6 @@ class Event {
     var type:String
     var desc:String
     var pax:Int
-    //var date:String
-    //var time:String
     var datetime:String
     var address:String
     var host_name:String
@@ -27,8 +25,6 @@ class Event {
         self.type = type
         self.desc = desc
         self.pax = pax
-        //self.date = date
-        //self.time = time
         self.datetime = datetime
         self.address = address
         self.host_name = host_name

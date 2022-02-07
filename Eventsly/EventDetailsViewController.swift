@@ -24,7 +24,7 @@ class EventDetailsViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblDateTime: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
     @IBOutlet weak var lblHost: UILabel!
     @IBOutlet weak var lblAttendees: UILabel!
@@ -57,8 +57,7 @@ class EventDetailsViewController: UIViewController {
                 let type = dict["type"] as! String
                 let desc = dict["desc"] as! String
                 let pax = dict["pax"] as! String
-                let datetime = dict["datetime"] as! String
-                //let time = dict["time"] as! String
+                let datetime = dict["date"] as! String
                 let address = dict["address"] as! String
                 let host_name = dict["host_name"] as! String
                 let num_attendees = dict["num_attendees"] as! String
@@ -73,7 +72,7 @@ class EventDetailsViewController: UIViewController {
             
             // insert event details to view
             self.lblName.text = "\(self.selectedEvent.name)"
-            self.lblDateTime.text = "Date & Time: \(self.selectedEvent.datetime)"
+            self.lblDate.text = "Date & Time: \(self.selectedEvent.datetime)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
             self.lblHost.text = "Host: \(self.selectedEvent.host_name)"
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"
@@ -170,8 +169,7 @@ class EventDetailsViewController: UIViewController {
                                  "type": selectedEvent.type,
                                  "desc": selectedEvent.desc,
                                  "pax": String(selectedEvent.pax),
-                                 "datetime": selectedEvent.datetime,
-                                 //"time": selectedEvent.time,
+                                 "date": selectedEvent.datetime,
                                  "address": selectedEvent.address,
                                  "host_name": selectedEvent.host_name,
                                  "num_attendees": String(selectedEvent.num_attendees)] as [String : Any]

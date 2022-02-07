@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eventsly." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnf-gk-8fX">
-                                <rect key="frame" x="120" y="424" width="174" height="48"/>
+                                <rect key="frame" x="0.0" y="424" width="414" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -26,8 +26,8 @@
                         <color key="backgroundColor" red="0.96078431369999995" green="0.72156862749999995" blue="0.20392156859999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dnf-gk-8fX" secondAttribute="trailing" constant="120" id="Mvp-EY-3kj"/>
-                            <constraint firstItem="dnf-gk-8fX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="120" id="cTb-Mb-xzF"/>
+                            <constraint firstItem="dnf-gk-8fX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="06W-6f-msX"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dnf-gk-8fX" secondAttribute="trailing" id="uPb-O1-STR"/>
                             <constraint firstItem="dnf-gk-8fX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="380" id="xDg-ci-Nlg"/>
                         </constraints>
                     </view>

@@ -45,6 +45,7 @@ class GoingViewController: UITableViewController {
             })
         }
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         let ref = Database.database().reference()
         

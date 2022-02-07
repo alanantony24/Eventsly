@@ -22,7 +22,7 @@ class GoingEventDetailsViewController: UIViewController {
     
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblDateTime: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
     @IBOutlet weak var lblHost: UILabel!
     @IBOutlet weak var lblAttendees: UILabel!
@@ -66,7 +66,7 @@ class GoingEventDetailsViewController: UIViewController {
                 let type = value?["type"] as? String ?? ""
                 let desc = value?["desc"] as? String ?? ""
                 let pax = value?["pax"] as? String ?? ""
-                let datetime = value?["datetime"] as? String ?? ""
+                let datetime = value?["date"] as? String ?? ""
                 let address = value?["address"] as? String ?? ""
                 let host_name = value?["host_name"] as? String ?? ""
                 let num_attendees = value?["num_attendees"] as? String ?? ""
@@ -75,7 +75,7 @@ class GoingEventDetailsViewController: UIViewController {
                 
                 // insert details of event to view
                 self.lblName.text = "\(goingEventDetail.name)"
-                self.lblDateTime.text = "\(goingEventDetail.datetime)"
+                self.lblDate.text = "\(goingEventDetail.datetime)"
                 self.lblDesc.text = "\(goingEventDetail.desc)"
                 self.lblHost.text = "Host: \(goingEventDetail.host_name)"
                 self.lblAttendees.text = "Attendees: \(goingEventDetail.num_attendees)/\(goingEventDetail.pax)"

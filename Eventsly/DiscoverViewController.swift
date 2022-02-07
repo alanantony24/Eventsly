@@ -35,8 +35,6 @@ class DiscoverViewController: UITableViewController {
                     let type = dict["type"] as! String
                     let desc = dict["desc"] as! String
                     let pax = dict["pax"] as! String
-                    //let date = dict["date"] as! String
-                    //let time = dict["time"] as! String
                     let datetime = dict["date"] as! String
                     let address = dict["address"] as! String
                     let host_name = dict["host_name"] as! String

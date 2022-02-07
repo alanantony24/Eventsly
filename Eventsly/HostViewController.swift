@@ -32,15 +32,12 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createDatePicker()
+
         descriptionInput.delegate = self
         descriptionInput.clearButtonMode = .whileEditing
         numofPaxInput.delegate = self
         numofPaxInput.clearButtonMode = .whileEditing
-        //dateInput.delegate = self
-        //dateInput.clearButtonMode = .whileEditing
-        //timeInput.delegate = self
-        //timeInput.clearButtonMode - .whileEditing
-        createDatePicker()
         locationInput.delegate = self
         locationInput.clearButtonMode = .whileEditing
         nameInput.delegate = self
@@ -49,10 +46,15 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
         categoryInput.clearButtonMode = .whileEditing
     }
     
+    // datepicker to select event date and time
     func createDatePicker() {
-        if #available(iOS 13.4, *)  {
-        datepicker.preferredDatePickerStyle = .wheels
-                }
+        if #available(iOS 13.4, *) {
+            datepicker.preferredDatePickerStyle = .wheels
+        }
+        
+        // set timezone
+        datepicker.timeZone = TimeZone.init(identifier: "UTC")
+        
         // toolbar
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -82,8 +84,6 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
         categoryInput.text = ""
         descriptionInput.text = ""
         numofPaxInput.text = ""
-        //dateInput.text = ""
-        //timeInput.text = ""
         dateInput.text = ""
         locationInput.text = ""
     }
@@ -121,6 +121,14 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
             }))
             present(alert, animated: true, completion: nil)
         }
+        else if (numofPaxInput.text == "0") {
+            let alert = UIAlertController(title: "Invalid Number", message: "Please key in a number greater than 0", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
+                (_) in
+                return
+            }))
+            present(alert, animated: true, completion: nil)
+        }
         else if (dateInput == nil || dateInput.text == "") {
             let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your date and time for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
@@ -129,14 +137,6 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
             }))
             present(alert, animated: true, completion: nil)
         }
-        /*else if (timeInput == nil || timeInput.text == "") {
-            let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your time for hosting", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
-                (_) in
-                return
-            }))
-            present(alert, animated: true, completion: nil)
-        }*/
         else if (locationInput == nil || locationInput.text == "") {
             let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your location for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
@@ -145,7 +145,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
             }))
             present(alert, animated: true, completion: nil)
         }
-        else{
+        else{ //all inputs valid
             let ref = Database.database().reference()
 
             //Get number of events to generate ID
@@ -162,7 +162,6 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
             let OKAction = UIAlertAction(title: "Ok", style: .default) {
                 (action: UIAlertAction!) in
                 // Code in this block will trigger when OK button tapped.
-                print("Ok button tapped");
                 
                 //generate unique event id
                 var eventID:String = ""
@@ -189,8 +188,6 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
                                     "type": self.categoryInput.text!,
                                     "desc": self.descriptionInput.text!,
                                     "pax": self.numofPaxInput.text!,
-                                    //"date": self.dateInput.text!,
-                                    //"time": self.timeInput.text!,
                                     "date": self.dateInput.text!,
                                     "address": self.locationInput.text!,
                                     "host_name": self.appdelgate.loggedinUser.name,
@@ -209,11 +206,10 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         descriptionInput.resignFirstResponder()
         numofPaxInput.resignFirstResponder()
-        //dateInput.resignFirstResponder()
-        //timeInput.resignFirstResponder()
         locationInput.resignFirstResponder()
         nameInput.resignFirstResponder()
         categoryInput.resignFirstResponder()
+        dateInput.resignFirstResponder()
         
         return true
     }

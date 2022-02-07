@@ -46,10 +46,8 @@ class AttendeesViewController: UITableViewController {
                             }
 
                         }
-                        
                         self.attendeeList = aList
                         self.tableView.reloadData()
-
                     })
                 }
                                 
