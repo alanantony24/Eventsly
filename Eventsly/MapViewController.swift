@@ -49,18 +49,12 @@ class MapViewController:UIViewController, MKMapViewDelegate{
                     locationList.append(address)
                 }
             }
-            print("LocationList :  \(locationList.count)")
         })
         
         //This is to get the last location from the LocationDelegate and get it's corresponding Coordinates.
         locationManager.delegate = locationDelegate
         locationDelegate.locationCallback = { location in
             self.latestLocation = location
-            let lat = String(format: "Lat(CurrentLoc): %3.8f", location.coordinate.latitude)
-            let long = String(format: "Long(CurrentLoc): %3.8f", location.coordinate.longitude)
-            print("\(lat), \(long)")
-            
-            //self.centerMapOnLocation(location: location)
             
             //Shows the current user location as a blue marker on the MapView.
             self.map.showsUserLocation = true

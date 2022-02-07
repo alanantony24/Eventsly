@@ -95,6 +95,24 @@ class EventDetailsViewController: UIViewController {
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"
             self.lblAddress.text = "\(self.selectedEvent.address)"
             
+            //check if user is host
+            if (self.appDelegate.loggedinUser.name == self.selectedEvent.host_name)
+            {
+                //Change colour and text of Join Button
+                self.joinBtn.setTitle("Own Event", for: .normal)
+                self.joinBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+                self.joinBtn.isEnabled = false
+                
+                let alertViewError = UIAlertController(
+                    title: "Joining Own Event",
+                    message: "This event hosted by yourself. You will not be able to join this event.",
+                    preferredStyle: UIAlertController.Style.alert)
+
+                alertViewError.addAction(UIAlertAction(title: "Noted", style: UIAlertAction.Style.default, handler: { _ in }))
+
+                self.present(alertViewError, animated: true, completion: nil)
+            }
+            
             //check if user joined event
             let ref = Database.database().reference()
             ref.child("Joined").child(self.appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
@@ -151,20 +169,6 @@ class EventDetailsViewController: UIViewController {
     
     
     @IBAction func btnJoin(_ sender: Any) {
-        
-        //check if user is host
-        if (appDelegate.loggedinUser.name == self.selectedEvent.host_name)
-        {
-            let alertViewError = UIAlertController(
-                title: "Joining Own Event",
-                message: "This event hosted by yourself. You will not be able to join this event.",
-                preferredStyle: UIAlertController.Style.alert)
-
-            alertViewError.addAction(UIAlertAction(title: "Noted", style: UIAlertAction.Style.default, handler: { _ in }))
-
-            self.present(alertViewError, animated: true, completion: nil)
-        }
-        
         //check for attendees limit
         if (self.selectedEvent.num_attendees < self.selectedEvent.pax && self.userJoinedEvent == false)
         {
