@@ -17,9 +17,9 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     
     @IBOutlet weak var descriptionInput: UITextField!
     @IBOutlet weak var numofPaxInput: UITextField!
-    //@IBOutlet weak var dateInput: UITextField!
+    @IBOutlet weak var dateInput: UITextField!
     //@IBOutlet weak var timeInput: UITextField!
-    @IBOutlet weak var datetimeInput: UITextField!
+    //@IBOutlet weak var datetimeInput: UITextField!
     @IBOutlet weak var locationInput: UITextField!
     @IBOutlet weak var nameInput: UITextField!
     @IBOutlet weak var categoryInput: UITextField!
@@ -62,14 +62,14 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
         toolbar.setItems([doneBtn], animated: true)
         
         // assign toobar
-        datetimeInput.inputAccessoryView = toolbar
+        dateInput.inputAccessoryView = toolbar
         
         // assign date picker to the text field
-        datetimeInput.inputView = datepicker
+        dateInput.inputView = datepicker
     }
     
     @objc func donePressed() {
-        datetimeInput.text = "\(datepicker.date)"
+        dateInput.text = "\(datepicker.date)"
         self.view.endEditing(true)
     }
     
@@ -84,7 +84,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
         numofPaxInput.text = ""
         //dateInput.text = ""
         //timeInput.text = ""
-        datetimeInput.text = ""
+        dateInput.text = ""
         locationInput.text = ""
     }
     
@@ -121,7 +121,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
             }))
             present(alert, animated: true, completion: nil)
         }
-        else if (datetimeInput == nil || datetimeInput.text == "") {
+        else if (dateInput == nil || dateInput.text == "") {
             let alert = UIAlertController(title: "Missing/Invalid Information", message: "Please key in your date and time for hosting", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Confirm", style: .default,handler: { [weak self]
                 (_) in
@@ -191,7 +191,7 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
                                     "pax": self.numofPaxInput.text!,
                                     //"date": self.dateInput.text!,
                                     //"time": self.timeInput.text!,
-                                    "date": self.datetimeInput.text!,
+                                    "date": self.dateInput.text!,
                                     "address": self.locationInput.text!,
                                     "host_name": self.appdelgate.loggedinUser.name,
                                     "num_attendees": "0"] as [String : Any]
