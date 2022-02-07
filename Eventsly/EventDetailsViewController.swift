@@ -42,6 +42,7 @@ class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // get all events from db
         let ref = Database.database().reference()
         ref.child("Event").observe(.value, with: { (snapshot) in
             
@@ -67,8 +68,10 @@ class EventDetailsViewController: UIViewController {
                 eventList.append(newEvent)
             }
             
+            // get data of selected event from Discover page
             self.selectedEvent = eventList[self.appDelegate.selectedEvent]
             
+            // insert event details to view
             self.lblName.text = "\(self.selectedEvent.name)"
             self.lblDate.text = "Date & Time: \(self.selectedEvent.date), \(self.selectedEvent.time)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
@@ -197,7 +200,7 @@ class EventDetailsViewController: UIViewController {
 
             self.present(alertViewTrue, animated: true, completion: nil)
         }
-        else if (self.userJoinedEvent == true)
+        else if (self.userJoinedEvent == true) // if user already joined selected event
         {
             let alertViewJoined = UIAlertController(
                 title: "Event Joined",
@@ -208,7 +211,7 @@ class EventDetailsViewController: UIViewController {
 
             self.present(alertViewJoined, animated: true, completion: nil)
         }
-        else
+        else // if max pax limit reached for selected event
         {
             let alertViewFalse = UIAlertController(
                 title: "Maximum Number of Pax Reached",

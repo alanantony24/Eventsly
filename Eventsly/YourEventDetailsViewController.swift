@@ -39,6 +39,7 @@ class YourEventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // get all events hosted by user
         let ref = Database.database().reference()
         ref.child("Event").observe(.value, with: { (snapshot) in
             
@@ -67,33 +68,13 @@ class YourEventDetailsViewController: UIViewController {
                         
                         eventList.append(newEvent)
                     }
-                    
                 }
-                
             }
             
-//            for event in snapshot.children.allObjects as! [DataSnapshot] {
-//
-//                let dict = event.value as! [String: AnyObject]
-//
-//                let id = dict["id"] as! String
-//                let name = dict["name"] as! String
-//                let type = dict["type"] as! String
-//                let desc = dict["desc"] as! String
-//                let pax = dict["pax"] as! String
-//                let date = dict["date"] as! String
-//                let time = dict["time"] as! String
-//                let address = dict["address"] as! String
-//                let host_name = dict["host_name"] as! String
-//                let num_attendees = dict["num_attendees"] as! String
-//
-//                let newEvent = Event(id: id, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
-//
-//                eventList.append(newEvent)
-//            }
-            
+            // data of selected event hosted by user from Your Events page
             self.selectedEvent = eventList[self.appDelegate.selectedYourEvent]
             
+            // insert details of event to view
             self.lblName.text = "\(self.selectedEvent.name)"
             self.lblDate.text = "Date & Time: \(self.selectedEvent.date), \(self.selectedEvent.time)"
             self.lblDesc.text = "\(self.selectedEvent.desc)"
@@ -101,6 +82,7 @@ class YourEventDetailsViewController: UIViewController {
             self.lblAttendees.text = "Attendees: \(self.selectedEvent.num_attendees)/\(self.selectedEvent.pax)"
             self.lblAddress.text = "\(self.selectedEvent.address)"
             
+            // display pin on location map
             let geoCoder = CLGeocoder()
             geoCoder.geocodeAddressString(
                 self.selectedEvent.address,
@@ -117,7 +99,6 @@ class YourEventDetailsViewController: UIViewController {
                         self.map.addAnnotation(annotation)
                     }
                 })
-            
         })
     }
     

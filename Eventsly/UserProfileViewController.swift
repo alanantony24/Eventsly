@@ -20,6 +20,7 @@ class UserProfileViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // get details of logged-in user
         let loggedinUser = appDelegate.loggedinUser
 
         lblName.text = "\(loggedinUser.name)"
@@ -53,6 +54,7 @@ class UserProfileViewController: UITableViewController {
         }
     }
     
+    // populate table cells with user details
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch((indexPath as NSIndexPath).section){
         case 0:
@@ -110,6 +112,7 @@ class UserProfileViewController: UITableViewController {
         }
     }
     
+    // display alert when user click on logout
     func userLogoutAlert()
     {
         let alertViewLogout = UIAlertController(

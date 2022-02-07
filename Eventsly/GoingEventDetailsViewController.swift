@@ -39,6 +39,7 @@ class GoingEventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // get all events joined by user
         let ref = Database.database().reference()
         ref.child("Joined").child(appDelegate.loggedinUser.name).observe(.value, with: { (snapshot) in
             
@@ -56,6 +57,7 @@ class GoingEventDetailsViewController: UIViewController {
                 goingEventList.append(goingEvent)
             }
             
+            // get data of selected joined event from Events Going page
             let selectedEventID = goingEventList[self.appDelegate.selectedGoingEvent].id
             ref.child("Event").child(selectedEventID).observeSingleEvent(of: .value, with: { snapshot in
                 let value = snapshot.value as? NSDictionary
@@ -72,6 +74,7 @@ class GoingEventDetailsViewController: UIViewController {
                 
                 let goingEventDetail:Event = Event(id: selectedEventID, name: name, type: type, desc: desc, pax: Int(pax) ?? 0, date: date, time: time, address: address, host_name: host_name, num_attendees: Int(num_attendees) ?? 0)
                 
+                // insert details of event to view
                 self.lblName.text = "\(goingEventDetail.name)"
                 self.lblDate.text = "Date & Time: \(goingEventDetail.date), \(goingEventDetail.time)"
                 self.lblDesc.text = "\(goingEventDetail.desc)"
@@ -79,6 +82,7 @@ class GoingEventDetailsViewController: UIViewController {
                 self.lblAttendees.text = "Attendees: \(goingEventDetail.num_attendees)/\(goingEventDetail.pax)"
                 self.lblAddress.text = "\(goingEventDetail.address)"
                 
+                // display pin on location map
                 let geoCoder = CLGeocoder()
                 geoCoder.geocodeAddressString(
                     goingEventDetail.address,
