@@ -71,7 +71,13 @@ class HostViewController:UIViewController, UITextViewDelegate, UITextFieldDelega
     }
     
     @objc func donePressed() {
-        dateInput.text = "\(datepicker.date)"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm E, d MMM y"
+        print(formatter.string(from: datepicker.date))
+        
+        //Formats the date upon the user hitting the done button.
+        var inputDate:String = formatter.string(from: datepicker.date)
+        dateInput.text = "\(inputDate)"
         self.view.endEditing(true)
     }
     
